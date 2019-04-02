@@ -14,7 +14,7 @@ function executeQuery(query) {
         pool.query(query, (error, results, fields) => {
             if (error) rej(error);
 
-            console.log({ error, results });
+            //console.log({ error, results });
            
                 res(results);
             

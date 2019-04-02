@@ -8,10 +8,17 @@ const routes = require('./routes');
 
 const app = new Koa();
 
-router.get('/getUsers', routes.getTest);
+//router.get('/getUsers', routes.getTest);
+router.get('/getUsers', routes.getUsers);
 
-router.post('/auth', routes.postTest);
+router.post('/auth', routes.postLogin);
+
+router.post('/newUser', routes.postNewUser);
 
 app.use(serve('client')).use(body()).use(router.routes()).use(router.allowedMethods());
 
 app.listen(port, error => error ? console.error(error) : console.log(`Listen on ${port} port!`));
+
+module.exports = {
+ app
+}

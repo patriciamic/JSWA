@@ -1,0 +1,63 @@
+<div class="col-md-9" style="align-self: center" ng-controller="NewPhotoCtrl as vm">
+
+    <div class="jumbotron col-md-12" style=" margin: auto; margin-left:16%; background:  rgba(66,66,66, 0.4);">
+        <!-- style="width: 800px; height: 600px; margin: auto; margin-top: 5%; background:  rgba(66,66,66, 0.3); " -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#!test">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#!profile">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">News</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#">Log out</a>
+            </li>
+        </ul>
+
+        <div id="myTabContent" class="tab-content" style="margin-top: 5%">
+            <div class="tab-pane fade" id="home">
+                <p>Users:</p>
+                <table>
+                    <tr ng-repeat="x in records">
+                        <td>{{x}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="tab-pane fade active show" id="profile">
+                <!-- TODO pagina profile -->
+
+                <div class="rounded-circle text-center" style=" 
+                    width: 90px;
+                    height: 90px;
+                    background-color:rgba(0,137,123,0.9);
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 100%;
+                    text-align: center;
+                    display: flex;
+                    margin: 0;
+                    position: absolute;
+                    left: 50%;
+                    -ms-transform: translateX(-50%);
+                    transform: translateX(-50%);
+
+
+                   ">{{vm.username}}</div>
+            </div>
+
+            <div class="jumbotron" style=" height: 1000px;background: rgba(66,66,66, 0.0);">
+                <hr class="my-4" style="margin-top:20%">
+               
+                <h2>Image upload</h2>
+                <div style="margin-top:10%">
+                    <div img-upload method="POST" url="webfreaks.in/dummyService" style="margin-top:10%"></div>
+                </div>
+
+            </div>
+
+
+
+        </div>

@@ -7,46 +7,38 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>The App</title>
     <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.gitcdn.link/cdn/angular/bower-material/master/angular-material.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body background = "assets/bg.jpg">
+<body background="assets/bg.jpg" ng-app="app">
     <!-- <h3>Mere</h3> -->
 
-    <div id="res"></div>
+    <ng-view></ng-view>
 
-    <div class="jumbotron" style="width: 500px; height: 600px; margin: auto; margin-top: 5%; background:  rgba(66,66,66, 0.3); ">
-        <h1 class="display-3">SHOW TIME</h1>
-        <form style="margin-top: 5%">
-            <fieldset>
-                <div class="form-group">
-                    <label for="exampleInputUsername">Username</label>
-                    <input type="email" class="form-control" id="usernameInput" aria-describedby="emailHelp"
-                        placeholder="Enter Username">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="passwordInput" placeholder="Password">
-                </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-route.js"></script>
+    <!-- AngularJS Material Dependencies -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.4/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.4/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.4/angular-messages.min.js"></script> -->
 
-            </fieldset>
-        </form>
+    <!-- AngularJS Material Javascript now available via Google CDN; version 1.1.10 used here -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.js"></script> -->
+   
+    <script src="app/app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <script src="./js/bootstrap.js"></script>
+    <script src="index.js"></script>
 
-
-        <p class="lead" style="margin-top: 10%">
-            <!-- <a class="btn btn-success btn-lg" href="" role="button" style="width: 40%; margin-left: 30%" >Log in</a> -->
-            <button type="submit" class="btn btn-success btn-lg" style="align-self: center" onclick="logInClicked()">Log in</button>
-        </p>
-        <p class="form-text" style="margin-left: 33%; margin-top: 5%">
-            Don't have an account?
-        </p>
-        <p class="form-text " style="margin-left: 38%">
-            Register now !
-        </p>
-    </div>
-
-
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-        <script src="index.js"></script>
+    <script src="app/home/home.js"></script>
+    <script src="app/test/test.js"></script>
+    <script src="app/register/register.js"></script>
+    <script src="app/profile/profile.js"></script>
+    <script src="app/newphoto/newphoto.js"></script>
 </body>
 
 </html>
