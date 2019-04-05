@@ -16,6 +16,8 @@ router.post('/auth', routes.postLogin);
 
 router.post('/newUser', routes.postNewUser);
 
+router.post('/addNewPost', routes.postPhoto);
+
 app
     .use(serve('client')).use(body()).use(router.routes()).use(router.allowedMethods())
     .use(async(ctx) => {
