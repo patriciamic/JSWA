@@ -29,31 +29,24 @@
             <div class="tab-pane fade active show" id="profile">
                 <!-- TODO pagina profile -->
 
-                <div class="rounded-circle text-center" style=" 
-                    width: 90px;
-                    height: 90px;
-                    background-color:rgba(0,137,123,0.9);
-                    justify-content: center;
-                    align-items: center;
-                    border-radius: 100%;
-                    text-align: center;
-                    display: flex;
-                    margin: 0;
-                    position: absolute;
-                    left: 50%;
-                    -ms-transform: translateX(-50%);
-                    transform: translateX(-50%);
-
-
-                   ">{{vm.username}}</div>
+                <div class="rounded-circle text-center round-magic-div">{{vm.username}}</div>
             </div>
 
             <div class="jumbotron" style=" height: 1000px;background: rgba(66,66,66, 0.0);">
                 <hr class="my-4" style="margin-top:20%">
-               
-                <h2>Image upload</h2>
-                <div style="margin-top:10%">
-                    <div img-upload method="POST" url="webfreaks.in/dummyService" style="margin-top:10%"></div>
+
+
+                <h5 class="display-4 text-center" style="margin-bottom: 5%">Create a new post</h5>
+                <!-- Drag and drop the image here! -->
+                <div class="content file-drop-zone col-md-12" ng-drop-image ng-model="vm.image">
+                    <span>Drop image here</span>
+                    <img class="col-md-12" ng-src="{{vm.image}}" />
+                </div>
+
+                <div style="margin-top: 3%">
+                    <label for="form7">Description</label>
+                    <textarea id="form7" class="md-textarea form-control" rows="3"></textarea>
+
                 </div>
 
             </div>
@@ -61,3 +54,5 @@
 
 
         </div>
+    </div>
+</div>

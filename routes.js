@@ -8,19 +8,19 @@ module.exports = {
 const pool = require('./db');
 
 function getTest(ctx) {
- ctx.body="getTest";
+    ctx.body = "getTest";
 }
 
-async function getUsers(ctx){
+async function getUsers(ctx) {
     ctx.body = await pool.executeQuery(`Select username from Users`);
-    //console.log(ctx.body);
+    console.log(ctx.body);
 }
 
-async function postNewUser(ctx){
+async function postNewUser(ctx) {
     let mdata = ctx.request.body;
     let mdataUsernameString = JSON.stringify(mdata.username);
     let mdataPasswordString = JSON.stringify(mdata.username);
-    if(mdataUsernameString.length < 4 || mdataPasswordString < 4){
+    if (mdataUsernameString.length < 4 || mdataPasswordString < 4) {
         return ctx.body = { message: `wrong` };
     }
 
@@ -34,5 +34,5 @@ async function postLogin(ctx) {
     let res = await pool.executeQuery(`select id, username from Users where username="${mdata.username}" and password = "${mdata.password}"`);
     let resStringfy = JSON.stringify(res);
     return ctx.body = { message: `${resStringfy}` };
+    // return ctx.body = { message: `${JSON.stringify(mdata.username)}` };
 }
-
