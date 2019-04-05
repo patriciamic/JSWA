@@ -9,6 +9,9 @@
         vm.showUsername();
 
         vm.image = '';
+
+
+        console.log("Picture: " + localStorage.getItem("ng-drop-image-image"));
         // vm.image = 'http://gratuitor.ro/wp-content/uploads/2014/10/LittleVisuals-imagini-gratuite-@-gratuitor.jpg';
     });
 

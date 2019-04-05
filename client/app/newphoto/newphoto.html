@@ -39,7 +39,7 @@
                 <h5 class="display-4 text-center" style="margin-bottom: 5%">Create a new post</h5>
                 <!-- Drag and drop the image here! -->
                 <div class="content file-drop-zone col-md-12" ng-drop-image ng-model="vm.image">
-                    <span>Drop image here</span>
+                    <span ng-if="vm.image===''">Drop image here</span>
                     <img class="col-md-12" ng-src="{{vm.image}}" />
                 </div>
 
