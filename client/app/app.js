@@ -1,6 +1,6 @@
 // functie care se apeleaza ea 
 (function() {
-    const app = angular.module('app', ['ngRoute']);
+    const app = angular.module('app', ['ngRoute', 'ngStorage', 'ngDropImage']);
 
     app.config($routeProvider => {
         $routeProvider
@@ -17,7 +17,7 @@
                 templateUrl: 'app/profile/profile.html'
             })
             .when('/newphoto', {
-                templateUrl: 'app/newphoto/newphoto.html'
+                templateUrl: 'app/newphoto/newphoto.html',
             })
             .otherwise({
                 redirectTo: '/'

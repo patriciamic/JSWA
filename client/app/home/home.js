@@ -1,5 +1,5 @@
-(function () {
-    angular.module('app').controller('HomeCtrl', function ($http) {
+(function() {
+    angular.module('app').controller('HomeCtrl', function($http) {
         const vm = this;
 
         vm.username = '';
@@ -9,9 +9,10 @@
 
             $http.post('/auth', { username: vm.username, password: vm.password })
                 .then(res => {
-                    console.log(JSON.parse(res.data.message)[0].username);
+                    // console.log(JSON.parse(res.data.message)[0].username);
 
-                    localStorage.setItem('username', JSON.parse(res.data.message)[0].username);
+                    // localStorage.setItem('username', JSON.parse(res.data.message)[0].username);
+                    localStorage.setItem('username', JSON.parse(res.data.message));
                     window.location.href = "#!test";
 
                 })
