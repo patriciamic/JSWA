@@ -13,8 +13,8 @@ function getTest(ctx) {
 }
 
 async function getUsers(ctx) {
-    //  ctx.body = await pool.executeQuery(`Select username from Users`);
-    // console.log(ctx.body);
+    ctx.body = await pool.executeQuery(`Select username from Users`);
+    console.log(ctx.body);
 }
 
 async function postNewUser(ctx) {
@@ -25,22 +25,23 @@ async function postNewUser(ctx) {
         ctx.body = { message: `wrong` };
     }
 
-    // let res = await pool.executeQuery(`INSERT INTO Users (username, password) VALUES ("${mdata.username}", "${mdata.password}")`);
+    let res = await pool.executeQuery(`INSERT INTO Users (username, password) VALUES ("${mdata.username}", "${mdata.password}")`);
 
     ctx.body = { message: `${mdata.username}` };
 }
 
 async function postLogin(ctx) {
     let mdata = ctx.request.body;
-    // let res = await pool.executeQuery(`select id, username from Users where username="${mdata.username}" and password = "${mdata.password}"`);
-    //  let resStringfy = JSON.stringify(res);
-    //  return ctx.body = { message: `${resStringfy}` };
-    ctx.body = { message: `${JSON.stringify(mdata.username)}` };
+    let res = await pool.executeQuery(`select id, username from Users where username="${mdata.username}" and password = "${mdata.password}"`);
+    let resStringfy = JSON.stringify(res);
+    ctx.body = { message: `${resStringfy}` };
+    //ctx.body = { message: `${JSON.stringify(mdata.username)}` };
 }
 
-function postPhoto(ctx) {
+async function postPhoto(ctx) {
     let mdata = ctx.request.body;
-    console.log("data" + mdata);
+    console.log("data" + mdata.idUser + ", " + mdata.description);
     //TODO de salvat datele in DB
+    let res = await pool.executeQuery(`INSERT INTO posts (Description, PhotoBase64, UserId) VALUES ("${mdata.description}", ${mdata.image}, ${mdata.idUser})`);
     ctx.body = "";
 }
