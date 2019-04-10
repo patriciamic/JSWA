@@ -12,6 +12,7 @@ module.exports = {
 
 const pool = require('./db');
 let latestPhoto = "empty";
+let latestDescription = "empty";
 
 function getTest(ctx) {
     ctx.body = "getTest";
@@ -26,7 +27,7 @@ function getLatestPhoto(ctx) {
 
     console.log(ctx.request.body);
 
-    ctx.body = { message: latestPhoto };
+    ctx.body = { photo: latestPhoto, description: latestDescription };
 
 }
 
@@ -64,7 +65,7 @@ function writeImage(image, description) {
     return new Promise(async(res, rej) => {
         let path = uuid();
         latestPhoto = path;
-
+        latestDescription = description;
         base64Img.img(image, 'test', path, async function(err, filepath) {
             if (err) { rej(err) }
             await writeFile({ image: filepath.substring(5), description: description });

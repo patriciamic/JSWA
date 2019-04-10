@@ -11,13 +11,13 @@
         }
         vm.showUsername();
 
-        vm.photo = {};
+        let photo = {};
         vm.getData = () => {
             let users = [];
             $http.get('/getLatesPhoto').then(res => {
-                vm.photo = res.data;
-
-                vm.image = "http://localhost:3000/" + vm.photo + ".jpg ";
+                photo = res.data.photo;
+                vm.description = res.data.description;
+                vm.image = "http://localhost:3000/" + photo + ".jpg ";
                 console.log(res.data);
             }).catch(e => {
                 console.error(e)
