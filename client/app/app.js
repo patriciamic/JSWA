@@ -2,13 +2,21 @@
 (function() {
     const app = angular.module('app', ['ngRoute', 'ngStorage', 'ngDropImage']);
 
+    // app.run($rootScope => {
+    //     $rootScope.$on("$locationChangeStart", (event, next, current) => {
+    //         if (~current.indexOf("newphoto")) {
+    //             localStorage.setItem("ng-drop-image-image", "");
+    //         }
+    //     })
+    // })
+
     app.config($routeProvider => {
         $routeProvider
             .when("/", {
-                templateUrl: 'app/home/home.html'
+                templateUrl: 'app/login/login.html'
             })
-            .when('/test', {
-                templateUrl: 'app/test/test.html'
+            .when('/home', {
+                templateUrl: 'app/home/home.html'
             })
             .when('/register', {
                 templateUrl: 'app/register/register.html'
@@ -20,7 +28,7 @@
                 templateUrl: 'app/newphoto/newphoto.html',
             })
             .otherwise({
-                redirectTo: '/'
+                redirectTo: '/home'
             });
     })
 
