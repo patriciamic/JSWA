@@ -13,7 +13,7 @@
             if (localStorage.getItem("ng-drop-image-image") && localStorage.getItem("ng-drop-image-image") != "") {
 
                 console.log("clicked dada");
-                console.log(localStorage.getItem("ng-drop-image-image"));
+                //console.log(localStorage.getItem("ng-drop-image-image"));
 
                 $http.post('/addNewPost', { image: localStorage.getItem("ng-drop-image-image"), description: vm.description })
                     .then(res => {
@@ -28,6 +28,8 @@
                         console.error(err)
                         alert("Something went wrong, please try again.");
                     })
+            } else {
+                alert("Drag the photo");
             }
 
         }

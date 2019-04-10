@@ -6,10 +6,12 @@ module.exports = {
     postLogin,
     postNewUser,
     getUsers,
-    postPhoto
+    postPhoto,
+    getLatestPhoto
 }
 
 const pool = require('./db');
+let latestPhoto = "empty";
 
 function getTest(ctx) {
     ctx.body = "getTest";
@@ -18,6 +20,14 @@ function getTest(ctx) {
 async function getUsers(ctx) {
     //  ctx.body = await pool.executeQuery(`Select username from Users`);
     // console.log(ctx.body);
+}
+
+function getLatestPhoto(ctx) {
+
+    console.log(ctx.request.body);
+
+    ctx.body = { message: latestPhoto };
+
 }
 
 async function postNewUser(ctx) {
@@ -44,14 +54,7 @@ async function postLogin(ctx) {
 
 
 var fs = require("fs");
-var sampleObject = {
-    a: 1,
-    b: 2,
-    c: {
-        x: 11,
-        y: 22
-    }
-};
+
 
 async function postPhoto(ctx) {
     ctx.body = await writeImage(ctx.request.body.image.substring(1, ctx.request.body.image.length - 1), ctx.request.body.description);
@@ -59,7 +62,10 @@ async function postPhoto(ctx) {
 
 function writeImage(image, description) {
     return new Promise(async(res, rej) => {
-        base64Img.img(image, 'test', uuid(), async function(err, filepath) {
+        let path = uuid();
+        latestPhoto = path;
+
+        base64Img.img(image, 'test', path, async function(err, filepath) {
             if (err) { rej(err) }
             await writeFile({ image: filepath.substring(5), description: description });
             res('done');

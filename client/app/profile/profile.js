@@ -1,7 +1,8 @@
 (function() {
-    angular.module('app').controller('ProfileCtrl', function($scope) {
+    angular.module('app').controller('ProfileCtrl', function($scope, $http) {
 
         const vm = this;
+
 
 
         vm.showUsername = () => {
@@ -10,24 +11,26 @@
         }
         vm.showUsername();
 
+        vm.photo = {};
+        vm.getData = () => {
+            let users = [];
+            $http.get('/getLatesPhoto').then(res => {
+                vm.photo = res.data;
+
+                vm.image = "http://localhost:3000/" + vm.photo + ".jpg ";
+                console.log(res.data);
+            }).catch(e => {
+                console.error(e)
+            });
+
+            return users;
+        }
 
 
-        // function readTextFile(file, callback) {
-        //     var rawFile = new XMLHttpRequest();
-        //     rawFile.overrideMimeType("application/json");
-        //     rawFile.open("GET", file, true);
-        //     rawFile.onreadystatechange = function() {
-        //         if (rawFile.readyState === 4 && rawFile.status == "200") {
-        //             callback(rawFile.responseText);
-        //         }
-        //     }
-        //     rawFile.send(null);
-        // }
+        vm.getData();
 
-        // readTextFile("/Users/Documents/workspace/test.json", function(text) {
-        //     var data = JSON.parse(text);
-        //     console.log(data);
-        // });
+
+
 
     })
 })()

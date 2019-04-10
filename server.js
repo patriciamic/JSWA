@@ -12,6 +12,8 @@ const app = new Koa();
 //router.get('/getUsers', routes.getTest);
 router.get('/getUsers', routes.getUsers);
 
+router.get('/getLatesPhoto', routes.getLatestPhoto);
+
 router.post('/auth', routes.postLogin);
 
 router.post('/newUser', routes.postNewUser);
