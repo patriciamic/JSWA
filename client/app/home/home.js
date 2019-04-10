@@ -1,27 +1,28 @@
-(function() {
-    angular.module('app').controller('HomeCtrl', function($http) {
+(function () {
+    angular.module('app').controller('TestCtrl', function ($http) {
+
         const vm = this;
 
-        vm.username = '';
-        vm.password = '';
+        vm.records = []
+        vm.getData = () => {
+            let users = [];
+            $http.get('/getUsers').then(res => {
+                vm.records = res.data;
+            }).catch(e => {
+                console.error(e)
+            });
 
-        vm.login = () => {
-
-            $http.post('/auth', { username: vm.username, password: vm.password })
-                .then(res => {
-                    // console.log(JSON.parse(res.data.message)[0].username);
-
-                    // localStorage.setItem('username', JSON.parse(res.data.message)[0].username);
-                    localStorage.setItem('username', JSON.parse(res.data.message));
-                    window.location.href = "#!test";
-
-                })
-                .catch(err => {
-                    console.error(err)
-                    alert("Wrong username or password.");
-                });
-
+            return users;
         }
 
-    });
+
+        vm.getData();
+
+        vm.showUsername = () => {
+            //console.log(localStorage.getItem('username'));
+            vm.username = localStorage.getItem('username');
+        }
+        vm.showUsername();
+
+    })
 })()

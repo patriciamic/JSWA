@@ -1,3 +1,6 @@
+const base64Img = require('base64-img');
+const uuid = require('uuid/v1');
+
 module.exports = {
     getTest,
     postLogin,
@@ -34,13 +37,56 @@ async function postLogin(ctx) {
     let mdata = ctx.request.body;
     // let res = await pool.executeQuery(`select id, username from Users where username="${mdata.username}" and password = "${mdata.password}"`);
     //  let resStringfy = JSON.stringify(res);
-    //  return ctx.body = { message: `${resStringfy}` };
+    // ctx.body = { message: `${resStringfy}` };
     ctx.body = { message: `${JSON.stringify(mdata.username)}` };
 }
 
-function postPhoto(ctx) {
-    let mdata = ctx.request.body;
-    console.log("data" + mdata);
-    //TODO de salvat datele in DB
-    ctx.body = "";
+
+
+var fs = require("fs");
+var sampleObject = {
+    a: 1,
+    b: 2,
+    c: {
+        x: 11,
+        y: 22
+    }
+};
+
+async function postPhoto(ctx) {
+    ctx.body = await writeImage(ctx.request.body.image.substring(1, ctx.request.body.image.length - 1), ctx.request.body.description);
+}
+
+function writeImage(image, description) {
+    return new Promise(async(res, rej) => {
+        base64Img.img(image, 'test', uuid(), async function(err, filepath) {
+            if (err) { rej(err) }
+            await writeFile({ image: filepath.substring(5), description: description });
+            res('done');
+        });
+    })
+}
+
+function readFile(path) {
+    return new Promise((res, rej) => {
+        fs.readFile(path, (err, data) => {
+            if (err) rej(err);
+            res(data);
+        })
+    });
+}
+
+function writeFile(data) {
+    return new Promise(async(res, rej) => {
+        let q = JSON.parse(await readFile('./object.json'));
+        console.log(q);
+        q.push({ image: data.image, description: data.description });
+
+        console.log(q);
+
+        fs.writeFile('./object.json', JSON.stringify(q), (err, w) => {
+            if (err) rej(err);
+            res(w);
+        })
+    })
 }

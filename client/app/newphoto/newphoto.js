@@ -6,27 +6,29 @@
 
         vm.image = '';
         vm.description = '';
-
-
+        localStorage.removeItem("ng-drop-image-image");
         // console.log("Picture: " + localStorage.getItem("ng-drop-image-image"));
-        // vm.image = 'http://gratuitor.ro/wp-content/uploads/2014/10/LittleVisuals-imagini-gratuite-@-gratuitor.jpg';
 
         vm.addNewPost = () => {
+            if (localStorage.getItem("ng-drop-image-image") && localStorage.getItem("ng-drop-image-image") != "") {
 
-            console.log("clicked dada");
+                console.log("clicked dada");
+                console.log(localStorage.getItem("ng-drop-image-image"));
 
-            $http.post('/addNewPost', { image: localStorage.getItem("ng-drop-image-image"), description: vm.description })
-                .then(res => {
-                    // window.location.href = "#!profile";
-                    console.log("data sent");
+                $http.post('/addNewPost', { image: localStorage.getItem("ng-drop-image-image"), description: vm.description })
+                    .then(res => {
+                        // window.location.href = "#!profile";
+                        console.log("data sent");
+                        // console.log(res);
+                        localStorage.setItem("ng-drop-image-image", "");
+                        window.location.href = "#!profile";
 
-                    localStorage.setItem("ng-drop-image-image", "");
-
-                })
-                .catch(err => {
-                    console.error(err)
-                    alert("Something went wrong, please try again.");
-                });
+                    })
+                    .catch(err => {
+                        console.error(err)
+                        alert("Something went wrong, please try again.");
+                    })
+            }
 
         }
 
