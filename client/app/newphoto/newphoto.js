@@ -10,29 +10,12 @@
         // console.log("Picture: " + localStorage.getItem("ng-drop-image-image"));
 
         vm.addNewPost = () => {
-<<<<<<< HEAD
-
-            console.log("clicked dada");
-
-            $http.post('/addNewPost', { idUser: localStorage.getItem("idUser"), image: localStorage.getItem("ng-drop-image-image"), description: vm.description })
-                .then(res => {
-                    // window.location.href = "#!profile";
-                    console.log("data sent");
-
-                    localStorage.setItem("ng-drop-image-image", "");
-
-                })
-                .catch(err => {
-                    console.error(err)
-                    alert("Something went wrong, please try again.");
-                });
-=======
             if (localStorage.getItem("ng-drop-image-image") && localStorage.getItem("ng-drop-image-image") != "") {
 
                 console.log("clicked dada");
                 //console.log(localStorage.getItem("ng-drop-image-image"));
 
-                $http.post('/addNewPost', { image: localStorage.getItem("ng-drop-image-image"), description: vm.description })
+                $http.post('/addNewPost', { idUser: localStorage.getItem("idUser"), image: localStorage.getItem("ng-drop-image-image"), description: vm.description })
                     .then(res => {
                         // window.location.href = "#!profile";
                         console.log("data sent");
@@ -48,7 +31,6 @@
             } else {
                 alert("Drag the photo");
             }
->>>>>>> master
 
         }
 

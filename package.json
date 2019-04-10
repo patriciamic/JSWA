@@ -14,6 +14,8 @@
     "@angular/material": "^7.3.6",
     "angular-drop-image": "^1.0.8",
     "angular-material": "^1.1.17",
+    "base64-img": "^1.0.4",
+    "base64-to-image": "^1.0.2",
     "fs": "0.0.1-security",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
@@ -22,6 +24,7 @@
     "koa-send": "^5.0.0",
     "koa-static": "^5.0.0",
     "mysql": "^2.16.0",
-    "ngstorage": "^0.3.11"
+    "ngstorage": "^0.3.11",
+    "uuid": "^3.3.2"
   }
 }

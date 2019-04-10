@@ -15,15 +15,6 @@
             return users;
         }
 
-<<<<<<< HEAD
-                    localStorage.setItem('username', JSON.parse(res.data.message)[0].username);
-                    
-                    localStorage.setItem('idUser', JSON.parse(res.data.message)[0].id);
-                    //console.log(res.data.message)
-                    //localStorage.setItem('username', JSON.parse(res.data.message));
-                    window.location.href = "#!test";
-=======
->>>>>>> master
 
         vm.getData();
 
