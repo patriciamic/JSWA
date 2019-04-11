@@ -1,28 +1,28 @@
 <div class="col-md-9" style="align-self: center" ng-controller="TestCtrl as vm">
 
-        <div class="jumbotron col-md-12" style="height: 1000px; margin: auto; margin-left:16%; background:  rgba(66,66,66, 0.4);">
-                <!-- style="width: 800px; height: 600px; margin: auto; margin-top: 5%; background:  rgba(66,66,66, 0.3); " -->
-      
+    <div class="jumbotron col-md-12" style="height: 1000px; margin: auto; margin-left:16%; background:  rgba(66,66,66, 0.4);">
+        <!-- style="width: 800px; height: 600px; margin: auto; margin-top: 5%; background:  rgba(66,66,66, 0.3); " -->
+
 
         <ul class="nav nav-tabs col-md-12">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="">Home</a>
+                <a class="nav-link active" data-toggle="tab" href=""><i class="fa fa-home" style="margin-right: 5px;"></i>Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#!profile">Profile</a>
+                <a class="nav-link" data-toggle="tab" href="#!profile"><i class="fa fa-user"style="margin-right: 5px;"></i>Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="#">News</a>
+                <a class="nav-link disabled" href="#"><i class="fa fa-bell"style="margin-right: 5px;"></i></i>News</a>
             </li>
-            <li class="nav-item" >
-                <a class="nav-link" data-toggle="tab" href="#">Log out</a>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#"><i class="fa fa-sign-out"style="margin-right: 5px;"></i>Log out</a>
             </li>
         </ul>
-        <h1 type="text"ng-model="vm.username" style="margin-top: 2%">Welcome , {{vm.username}} ! </h1>
+        <h1 type="text" ng-model="vm.username" style="margin-top: 2%">Welcome , {{vm.username}} ! </h1>
         <div id="myTabContent" class="tab-content" style="margin-top: 5%">
             <div class="tab-pane fade active show" id="home">
                 <p>Users:</p>
-                <table >
+                <table>
                     <tr ng-repeat="x in vm.records">
                         <td>{{x.username}}</td>
                     </tr>
@@ -35,7 +35,7 @@
     </div>
 
 
- 
+
 
 </div>
 

@@ -4,16 +4,16 @@
         <!-- style="width: 800px; height: 600px; margin: auto; margin-top: 5%; background:  rgba(66,66,66, 0.3); " -->
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#!test">Home</a>
+                <a class="nav-link" data-toggle="tab" href="#!test"><i class="fa fa-home" style="margin-right: 5px;"></i>Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#!profile">Profile</a>
+                <a class="nav-link active" data-toggle="tab" href="#!profile"><i class="fa fa-user"style="margin-right: 5px;"></i>Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="#">News</a>
+                <a class="nav-link disabled" href="#"><i class="fa fa-bell"style="margin-right: 5px;"></i></i>News</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#">Log out</a>
+                <a class="nav-link" data-toggle="tab" href="#"><i class="fa fa-sign-out"style="margin-right: 5px;"></i>Log out</a>
             </li>
         </ul>
 
@@ -64,7 +64,7 @@
                 </div>
 
 
-                <div  style="margin-top: 13%; ">
+                <div style="margin-top: 13%; ">
                     <div class="card border-dark mb-3" style="max-width: 25rem;  margin-top:3%; margin-left: 20%;" ng-repeat="item in vm.posts">
                         <div class="card-body">
                             <div class="card-text text-center">{{item.description}}</div>
