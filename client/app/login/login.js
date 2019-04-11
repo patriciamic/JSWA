@@ -9,11 +9,12 @@
 
             $http.post('/auth', { username: vm.username, password: vm.password })
                 .then(res => {
-                    // console.log(JSON.parse(res.data.message)[0].username);
+                    console.log(JSON.parse(res.data.message)[0].username);
 
-                    // localStorage.setItem('username', JSON.parse(res.data.message)[0].username);
-                    localStorage.setItem('username', JSON.parse(res.data.message));
-                    window.location.href = "#!test";
+                    localStorage.setItem('username', JSON.parse(res.data.message)[0].username);
+                    localStorage.setItem('idUser', JSON.parse(res.data.message)[0].id)
+                    // localStorage.setItem('username', JSON.parse(res.data.message));
+                    window.location.href = "#!home";
 
                 })
                 .catch(err => {

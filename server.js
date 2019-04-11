@@ -12,7 +12,7 @@ const app = new Koa();
 //router.get('/getUsers', routes.getTest);
 router.get('/getUsers', routes.getUsers);
 
-router.get('/getLatesPhoto', routes.getLatestPhoto);
+router.post('/getLatesPhoto', routes.getLatestPhoto);
 
 router.post('/auth', routes.postLogin);
 
@@ -22,7 +22,7 @@ router.post('/addNewPost', routes.postPhoto);
 
 app
     .use(serve('client'))
-    .use(serve('test'))
+    .use(serve('imagesPosts'))
     .use(body()).use(router.routes()).use(router.allowedMethods())
     .use(async(ctx) => {
         if (ctx.path === '/node_modules/angular-drop-image/dist/angular-drop-image.js') {

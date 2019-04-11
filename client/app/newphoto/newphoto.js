@@ -1,6 +1,6 @@
-(function() {
+(function () {
     let app = angular.module('app');
-    app.controller('NewPhotoCtrl', function($http) {
+    app.controller('NewPhotoCtrl', function ($http) {
         const vm = this;
 
 
@@ -15,7 +15,7 @@
                 console.log("clicked dada");
                 //console.log(localStorage.getItem("ng-drop-image-image"));
 
-                $http.post('/addNewPost', { image: localStorage.getItem("ng-drop-image-image"), description: vm.description })
+                $http.post('/addNewPost', { idUser: localStorage.getItem("idUser"), image: localStorage.getItem("ng-drop-image-image"), description: vm.description })
                     .then(res => {
                         // window.location.href = "#!profile";
                         console.log("data sent");
