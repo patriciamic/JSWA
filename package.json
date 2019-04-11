@@ -14,6 +14,7 @@
     "@angular/material": "^7.3.6",
     "angular-drop-image": "^1.0.8",
     "angular-material": "^1.1.17",
+    "angularjs-toaster": "^3.0.0",
     "base64-img": "^1.0.4",
     "base64-to-image": "^1.0.2",
     "fs": "0.0.1-security",

@@ -52,13 +52,15 @@ async function postNewUser(ctx) {
     let mdata = ctx.request.body;
     let mdataUsernameString = JSON.stringify(mdata.username);
     let mdataPasswordString = JSON.stringify(mdata.username);
-    if (mdataUsernameString.length < 4 || mdataPasswordString < 4) {
+    console.log(mdataUsernameString.length);
+    if (mdataUsernameString.length < 4 || mdataPasswordString.length < 4) {
+        console.log("intra aici");
         ctx.body = { message: `wrong` };
+    } else {
+        let res = await pool.executeQuery(`INSERT INTO Users (username, password) VALUES ("${mdata.username}", "${mdata.password}")`);
+        ctx.body = { message: `${mdata.username}` };
     }
 
-    let res = await pool.executeQuery(`INSERT INTO Users (username, password) VALUES ("${mdata.username}", "${mdata.password}")`);
-
-    ctx.body = { message: `${mdata.username}` };
 }
 
 async function postLogin(ctx) {
