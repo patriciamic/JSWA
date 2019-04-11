@@ -14,6 +14,8 @@ router.get('/getUsers', routes.getUsers);
 
 router.post('/getLatesPhoto', routes.getLatestPhoto);
 
+router.post('/getAllPosts', routes.getAllPosts);
+
 router.post('/auth', routes.postLogin);
 
 router.post('/newUser', routes.postNewUser);

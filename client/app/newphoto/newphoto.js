@@ -19,7 +19,7 @@
                     .then(res => {
                         // window.location.href = "#!profile";
                         console.log("data sent");
-                        // console.log(res);
+                        //console.log(res);
                         localStorage.setItem("ng-drop-image-image", "");
                         window.location.href = "#!profile";
 
