@@ -81,12 +81,13 @@ function writeImage(idUser, image, description, code) {
         let path = uuid();
         latestPhoto = path;
         latestDescription = description;
+        console.log("aici 1");
         base64Img.img(image, 'imagesPosts', path, async function(err, filepath) {
             if (err) { rej(err) }
-            await writeFile({ userID: idUser, image: filepath.substring(5), description: description });
+           // await writeFile({ userID: idUser, image: filepath.substring(5), description: description });
             res('done');
         });
-
+console.log("aici 2");
         let result = await pool.executeQuery(`INSERT INTO posts (description, photo, idUser, code) VALUES ("${description}", "${path}", "${idUser}", "${code}")`);
 
 
