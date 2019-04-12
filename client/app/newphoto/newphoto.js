@@ -7,16 +7,20 @@
         vm.description = '';
         localStorage.removeItem("ng-drop-image-image");
 
+        // console.log("code: " + vm.code);
+
         vm.addNewPost = () => {
+            console.log("code: " + vm.code);
             if (vm.description != '') {
                 if (localStorage.getItem("ng-drop-image-image") && localStorage.getItem("ng-drop-image-image") != "") {
 
                     console.log("clicked dada");
 
-                    $http.post('/addNewPost', { idUser: localStorage.getItem("idUser"), image: localStorage.getItem("ng-drop-image-image"), description: vm.description })
+                    $http.post('/addNewPost', { idUser: localStorage.getItem("idUser"), image: localStorage.getItem("ng-drop-image-image"), description: vm.description, code: vm.code })
                         .then(res => {
                             console.log("data sent");
                             localStorage.setItem("ng-drop-image-image", "");
+
                             toaster.pop("success", "Added succefully");
                             $location.path("/profile");
 

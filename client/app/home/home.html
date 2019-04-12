@@ -18,6 +18,35 @@
                 <a class="nav-link" data-toggle="tab" href="#"><i class="fa fa-sign-out"style="margin-right: 5px;"></i>Log out</a>
             </li>
         </ul>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor03">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link active" data-toggle="tab" href=""><i class="fa fa-home" style="margin-right: 5px;"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#!profile"><i class="fa fa-user"style="margin-right: 5px;"></i>Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#"><i class="fa fa-bell"style="margin-right: 5px;"></i></i>News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#"><i class="fa fa-sign-out"style="margin-right: 5px;"></i>Log out</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+
         <h1 type="text" ng-model="vm.username" style="margin-top: 2%">Welcome , {{vm.username}} ! </h1>
         <div id="myTabContent" class="tab-content" style="margin-top: 5%">
             <div class="tab-pane fade active show" id="home">
@@ -33,10 +62,6 @@
 
         </div>
     </div>
-
-
-
-
 </div>
 
 </div>

@@ -30,7 +30,7 @@ async function getLatestPhoto(ctx) {
     let mdata = ctx.request.body;
     console.log("body " + ctx.request.body.idUser);
     console.log(mdata.idUser);
-    let res = await pool.executeQuery("select idUser, photo, description from posts where idUser=" + mdata.idUser);
+    let res = await pool.executeQuery("select idUser, photo, description, code from posts where idUser=" + mdata.idUser);
     let resStringfy = JSON.stringify(res);
     console.log(resStringfy);
     ctx.body = { message: `${resStringfy}` };
@@ -72,10 +72,10 @@ async function postLogin(ctx) {
 }
 
 async function postPhoto(ctx) {
-    ctx.body = await writeImage(ctx.request.body.idUser, ctx.request.body.image.substring(1, ctx.request.body.image.length - 1), ctx.request.body.description);
+    ctx.body = await writeImage(ctx.request.body.idUser, ctx.request.body.image.substring(1, ctx.request.body.image.length - 1), ctx.request.body.description, ctx.request.body.code);
 }
 
-function writeImage(idUser, image, description) {
+function writeImage(idUser, image, description, code) {
 
     return new Promise(async(res, rej) => {
         let path = uuid();
@@ -87,7 +87,7 @@ function writeImage(idUser, image, description) {
             res('done');
         });
 
-        let result = await pool.executeQuery(`INSERT INTO posts (description, photo, idUser) VALUES ("${description}", "${path}", "${idUser}")`);
+        let result = await pool.executeQuery(`INSERT INTO posts (description, photo, idUser, code) VALUES ("${description}", "${path}", "${idUser}", "${code}")`);
 
 
     })

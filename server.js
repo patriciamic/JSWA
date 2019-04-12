@@ -9,7 +9,6 @@ const routes = require('./routes');
 
 const app = new Koa();
 
-//router.get('/getUsers', routes.getTest);
 router.get('/getUsers', routes.getUsers);
 
 router.post('/getLatesPhoto', routes.getLatestPhoto);
