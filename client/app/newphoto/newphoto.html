@@ -2,20 +2,38 @@
 
     <div class="jumbotron col-md-12" style=" margin: auto; margin-left:16%; background:  rgba(66,66,66, 0.4);">
         <!-- style="width: 800px; height: 600px; margin: auto; margin-top: 5%; background:  rgba(66,66,66, 0.3); " -->
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#!test">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#!profile">Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">News</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#">Log out</a>
-            </li>
-        </ul>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand">
+                <h1><i class="fa fa-mobile" style="margin-right: 5px"></i>templatesHOW</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor03">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link " data-toggle="tab" href=""><i class="fa fa-home" style="margin-right: 5px;"></i>Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link active" data-toggle="tab" href="#!profile"><i class="fa fa-user"style="margin-right: 5px;"></i>Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#"><i class="fa fa-bell"style="margin-right: 5px;"></i></i>News</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#"><i class="fa fa-sign-out"style="margin-right: 5px;"></i>Log out</a>
+                        </li> -->
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Log out</button> -->
+                    <!-- <h6>{{vm.username}}</h6> -->
+                    <a class="nav-link" data-toggle="tab" href="#"><i class="fa fa-sign-out"style="margin-right: 5px;"></i>Log out</a>
+                </form>
+            </div>
+        </nav>
 
         <div id="myTabContent" class="tab-content" style="margin-top: 5%">
             <div class="tab-pane fade" id="home">
@@ -46,8 +64,13 @@
                 <div style="margin-top: 3%">
                     <label for="form7">Description</label>
                     <textarea id="form7" class="md-textarea form-control" rows="3" ng-model="vm.description"></textarea>
-
                 </div>
+
+                <div style="margin-top: 3%">
+                    <label for="form7">Add code</label>
+                    <textarea id="form7" class="md-textarea form-control" rows="10" ng-model="vm.code"></textarea>
+                </div>
+
 
                 <button type="submit" class="btn btn-success btn-lg" style="align-self: right; margin-top: 5%" ng-click="vm.addNewPost()">Add</button>
 

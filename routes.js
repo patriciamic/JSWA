@@ -9,7 +9,8 @@ module.exports = {
     postNewUser,
     getUsers,
     postPhoto,
-    getLatestPhoto
+    getLatestPhoto,
+    getAllPosts
 }
 
 
@@ -28,28 +29,38 @@ async function getUsers(ctx) {
 async function getLatestPhoto(ctx) {
     let mdata = ctx.request.body;
     console.log("body " + ctx.request.body.idUser);
-    // let res = await pool.executeQuery(`select idUser, photo, description from posts where idUser="${mdata.idUser}"`);
     console.log(mdata.idUser);
-    let res = await pool.executeQuery("select idUser, photo, description from posts where idUser=" + mdata.idUser);
+    let res = await pool.executeQuery("select idUser, photo, description, code from posts where idUser=" + mdata.idUser);
     let resStringfy = JSON.stringify(res);
     console.log(resStringfy);
     ctx.body = { message: `${resStringfy}` };
 
-   // ctx.body = { photo: latestPhoto, description: latestDescription };
+    // ctx.body = { photo: latestPhoto, description: latestDescription };
 
+}
+
+
+async function getAllPosts(ctx) {
+    let mdata = ctx.request.body;
+    let res = await pool.executeQuery("select idUser, photo, description from posts where idUser!=" + mdata.idUser);
+    let resStringfy = JSON.stringify(res);
+    console.log(resStringfy);
+    ctx.body = { message: `${resStringfy}` };
 }
 
 async function postNewUser(ctx) {
     let mdata = ctx.request.body;
     let mdataUsernameString = JSON.stringify(mdata.username);
     let mdataPasswordString = JSON.stringify(mdata.username);
-    if (mdataUsernameString.length < 4 || mdataPasswordString < 4) {
+    console.log(mdataUsernameString.length);
+    if (mdataUsernameString.length < 4 || mdataPasswordString.length < 4) {
+        console.log("intra aici");
         ctx.body = { message: `wrong` };
+    } else {
+        let res = await pool.executeQuery(`INSERT INTO Users (username, password) VALUES ("${mdata.username}", "${mdata.password}")`);
+        ctx.body = { message: `${mdata.username}` };
     }
 
-    let res = await pool.executeQuery(`INSERT INTO Users (username, password) VALUES ("${mdata.username}", "${mdata.password}")`);
-
-    ctx.body = { message: `${mdata.username}` };
 }
 
 async function postLogin(ctx) {
@@ -60,28 +71,23 @@ async function postLogin(ctx) {
     // ctx.body = { message: `${JSON.stringify(mdata.username)}` };
 }
 
-
-
-
-
-
 async function postPhoto(ctx) {
-    ctx.body = await writeImage(ctx.request.body.idUser, ctx.request.body.image.substring(1, ctx.request.body.image.length - 1), ctx.request.body.description);
+    ctx.body = await writeImage(ctx.request.body.idUser, ctx.request.body.image.substring(1, ctx.request.body.image.length - 1), ctx.request.body.description, ctx.request.body.code);
 }
 
-function writeImage(idUser, image, description) {
+function writeImage(idUser, image, description, code) {
 
-    return new Promise(async (res, rej) => {
+    return new Promise(async(res, rej) => {
         let path = uuid();
         latestPhoto = path;
         latestDescription = description;
-        base64Img.img(image, 'imagesPosts', path, async function (err, filepath) {
+        base64Img.img(image, 'imagesPosts', path, async function(err, filepath) {
             if (err) { rej(err) }
             await writeFile({ userID: idUser, image: filepath.substring(5), description: description });
             res('done');
         });
 
-        let result = await pool.executeQuery(`INSERT INTO posts (description, photo, idUser) VALUES ("${description}", "${path}", "${idUser}")`);
+        let result = await pool.executeQuery(`INSERT INTO posts (description, photo, idUser, code) VALUES ("${description}", "${path}", "${idUser}", "${code}")`);
 
 
     })
@@ -97,12 +103,12 @@ function readFile(path) {
 }
 
 function writeFile(data) {
-    return new Promise(async (res, rej) => {
+    return new Promise(async(res, rej) => {
         let q = JSON.parse(await readFile('./object.json'));
         //console.log(q);
         q.push({ image: data.image, description: data.description });
 
-        console.log(q);
+        //console.log(q);
 
         fs.writeFile('./object.json', JSON.stringify(q), (err, w) => {
             if (err) rej(err);

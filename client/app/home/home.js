@@ -1,5 +1,5 @@
-(function () {
-    angular.module('app').controller('TestCtrl', function ($http) {
+(function() {
+    angular.module('app').controller('TestCtrl', function($http) {
 
         const vm = this;
 

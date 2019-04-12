@@ -13,13 +13,8 @@ function executeQuery(query) {
     return new Promise((res, rej) => {
         pool.query(query, (error, results, fields) => {
             if (error) rej(error);
-
             //console.log({ error, results });
-           
-                res(results);
-            
-          
-            
+            res(results);
         })
     });
 }
