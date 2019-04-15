@@ -28,6 +28,8 @@ app
     .use(async(ctx) => {
         if (ctx.path === '/node_modules/angular-drop-image/dist/angular-drop-image.js') {
             await send(ctx, ctx.path);
+        } else if (ctx.path === '/node_modules/ngclipboard/dist/ngclipboard.min.js') {
+            await send(ctx, ctx.path);
         } else {
             ctx.throw(404);
         }

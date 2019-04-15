@@ -27,6 +27,7 @@
     "koa-send": "^5.0.0",
     "koa-static": "^5.0.0",
     "mysql": "^2.16.0",
+    "ngclipboard": "^2.0.0",
     "ngstorage": "^0.3.11",
     "ui-bootstrap": "^0.1.11",
     "uuid": "^3.3.2"

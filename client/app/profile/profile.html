@@ -1,6 +1,6 @@
 <div class="col-md-9" style="align-self: center" ng-controller="ProfileCtrl as vm">
 
-    <div class="jumbotron col-md-12" style=" margin: auto; margin-left:16%; background:  rgba(66,66,66, 0.4);">
+    <div class="jumbotron col-md-12" style="height: 100%; margin: auto; margin-left:16%; background:  rgba(66,66,66, 0.4);">
         <!-- style="width: 800px; height: 600px; margin: auto; margin-top: 5%; background:  rgba(66,66,66, 0.3); " -->
         <!-- <ul class="nav nav-tabs">
             <li class="nav-item">
@@ -20,19 +20,17 @@
         <div class="col-md-12" style="height: 21%; margin-top:-10%;background-color: rgb(48,48,48)">
             <h1 style="margin-top:3%; color: rgb(48,48,48)">__></h1>
             <h3>Discover the top designers & creatives</h3>
-            <h6>TemplateSHOW is the leading destination to find & showcase creative work and home
-                to the world's best design progessional.</h6>
+            <h6>TemplateSHOW is the leading destination to find & showcase creative work and home to the world's best design progessional.</h6>
             <h6>The Heart of the Designer Community.</h6>
-            <h6>We're on a mission to build the world's best community for creatives to share and
-                grow.</h6>
+            <h6>We're on a mission to build the world's best community for creatives to share and grow.
+            </h6>
         </div>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand">
                 <h1>template<strong>SH<i class="fa fa-mobile" style="margin-right: 5px"></i>W</strong></h1>
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
-                aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -55,11 +53,9 @@
                         </li> -->
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                    <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Log out</button> -->
-                    <!-- <h6>{{vm.username}}</h6> -->
-                    <a class="nav-link" data-toggle="tab" href="#"><i class="fa fa-sign-out"
-                            style="margin-right: 5px;"></i>Log out</a>
+                    <a class="nav-link" data-toggle="tab" href="#" title="Log out" style="margin-right: 2px"><i class="fa fa-sign-out"
+                            style="margin-right: 2px;"></i>Log out</a>
+                    <!-- <a href="#!profile" style="color: white" title="Go to profile">{{vm.username}}</a> -->
                 </form>
             </div>
         </nav>
@@ -68,23 +64,11 @@
 
 
         <div id="myTabContent" class="tab-content" style="margin-top: 5%">
-            <!-- <div class="tab-pane fade" id="home">
-                <p>Users:</p>
-                <table>
-                    <tr ng-repeat="x in records">
-                        <td>{{x}}</td>
-                    </tr>
-                </table>
-            </div> -->
             <div class="tab-pane fade active show" id="profile">
-                <!-- TODO pagina profile -->
                 <div class="rounded-circle text-center round-magic-div btn-success">{{vm.username}}</div>
             </div>
-
-            <!-- <div class="jumbotron" style=" height: 100% ;background: rgba(66,66,66, 0.0);"> -->
             <hr class="my-4" style="margin-top:5%">
             <h5 class="display-4 text-center" style="margin-bottom: 5%; margin-top: 8%">Enjoy your creation!</h5>
-
 
             <div class="btn-group btn-group-toggle " data-toggle="buttons" style="
                     justify-content: center;
@@ -99,73 +83,75 @@
                     transform: translateX(-50%);
                 ">
                 <label class="btn btn-success">
-                    <!-- <input type="checkbox" checked="" autocomplete="off"> Add -->
                     <a class="nav-link" data-toggle="tab" href="#!newphoto" style="color:white;">Add</a>
                 </label>
                 <label class="btn btn-success">
-                    <!-- <input type="checkbox" autocomplete="off"> Delete -->
                     <a class="nav-link" data-toggle="tab" href="#!profile" style="color:white">Delete</a>
                 </label>
                 <label class="btn btn-success ">
-                    <!-- <input type="checkbox" autocomplete="off"> Edit -->
                     <a class="nav-link " data-toggle="tab" href="#!profile" style="color:white">Edit</a>
                 </label>
             </div>
 
 
-            <div style="margin-top: 13%; " align="center">
-                <div class="card border-dark mb-3" style="width: 27rem; max-height: 35rem; min-height: 35rem;  margin-top:3%; float:left"
-                    ng-repeat="item in vm.posts">
+            <div style="margin-top: 13%;margin-left: 10% ;" align="center">
+                <div class="card border-dark mb-3 " style="width: 27rem; max-height: 25rem; min-height: 25rem;float:left" ng-repeat="item in vm.posts">
                     <div class="card-body">
                         <p class="lead" style="margin-top: 1%; margin-right: 1%" align="right">
-                            <button type="submit" class="btn btn-success btn-lg" style="align-self: right"
-                                ng-click="vm.showItem(item)"><i class="fa fa-code"></i></button>
+                            <button type="submit" class="btn btn-info btn-lg" style="align-self: right" ng-click="vm.showItem(item)"><i class="fa fa-info-circle"></i></button>
                         </p>
                         <div class="text-center" style="margin-top:1%">
-                            <!-- <img src="assets/picUI2.jpg" class="img-rounded" alt="Cinque Terre" style="
-                                        width:100%;
-                                        height: 100%;"> -->
-                            <!-- <img src="http://localhost:3000/test.jpg" alt="asta e poza" class="img-rounded" style="
-                                width:100%;
-                                height: 100%;" /> -->
                             <img src="{{item.photo}}" alt="asta e poza" class="img-rounded" style="
                                 width:100%;
                                 height: 100%;" />
                         </div>
+                        <!-- <div class="card-text text-center " style="margin:2%">{{item.description}}</div> -->
                     </div>
 
-                    <div class="card-text text-center " style="margin:2%">{{item.description}}</div>
+
 
                 </div>
 
 
             </div>
+
+
+            <div id="loading" class="modal" ng-if="vm.displayModal">
+                <div class="modal-content" style="width: 600px;">
+                    <div style="color: #000">
+                        <div class="card mb-3 " style=" margin-top:3%;">
+                            <div class="card-body">
+
+                                <p class="lead" style="margin-top: 1%; margin-right: 1%" align="right">
+
+                                    <button type="submit" class="btn btn-info btn-lg" style="align-self: right" title="Copy code" ngclipboard data-clipboard-text="{{vm.copyToClipboard}}" ng-click="vm.copy()"><i class="fa fa-copy"></i></button>
+                                    <button type="submit" class="btn btn-danger btn-lg" style="align-self: right" title="Close" ng-click="vm.close()"><i class="fa fa-window-close"></i></button>
+                                </p>
+                                <div class="text-center" style="margin-top:1%">
+                                    <img src="{{vm.photoToShow}}" alt="asta e poza" class="img-rounded" style="
+                                                    width:100%;
+                                                    height: 100%;" />
+                                </div>
+                                <div class="card-text text-center " style="margin:2%; color:whitesmoke; font-size: 25px">{{vm.descriptionToShow}}</div>
+                                <p style="color:white; font-size: 30px; text-align: center; margin-top:10%"><strong>Here is the code</strong></p>
+                                <!-- <p class="lead" style="margin-top: 1%; margin-right: 1%;" align="right">
+                                        <button type="submit" class="btn btn-info btn-lg" style="align-self: right" title="Copy code" ngclipboard data-clipboard-text="{{vm.copyToClipboard}}" ng-click="vm.copy()"><i class="fa fa-copy"></i></button>
+                                    </p> -->
+                                <textarea readonly id="form7" class="md-textarea form-control" style="height: 100%px; min-height: 300px ;">{{vm.codeToShow}}</textarea>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
 
 
         <!-- </div> -->
 
-        <div id="loading" class="modal" ng-if="vm.displayModal">
-            <div class="modal-content" style="width: 600px;">
-                <div style="color: #000">
-                    <!-- <i id="spinner" class="fa fa-circle-o-notch fa-spin" style="font-size:24px"></i>
-                    <span> Va rugam asteptati ...</span> -->
-                    <!-- <button ng-click="vm.close()">Close</button> -->
-                    <!-- <textarea>
-                            {{vm.code}}
-                    </textarea> -->
-                    <p class="lead" style="margin-top: 1%; margin-right: 1%" align="right">
-                        <button type="submit" class="btn btn-info btn-lg" style="align-self: right"
-                            ng-click="vm.close()"><i class="fa fa-copy"></i></button>
-                        <button type="submit" class="btn btn-danger btn-lg" style="align-self: right"
-                            ng-click="vm.close()"><i class="fa fa-window-close"></i></button>
-                    </p>
-                    <textarea readonly id="form7" class="md-textarea form-control"
-                        style="height: 100%px; min-height: 500px">{{vm.codeToShow}}</textarea>
 
-                </div>
-            </div>
-        </div>
     </div>
 
     <style>
@@ -181,12 +167,18 @@
             background-color: rgb(0, 0, 0);
             background-color: rgba(0, 0, 0, 0.4);
         }
-
+        
         .modal-content {
             background-color: "secondary";
             margin: 15% auto;
             padding: 20px;
             border: 1px "secondary";
             width: 15%;
+        }
+        
+        .polaroid {
+            /* width: 250px; */
+            box-shadow: 0 4px 8px 0 rgba(48, 48, 48, 0.2), 0 6px 20px 0 rgba(1, 0, 0, 0.19);
+            text-align: center;
         }
     </style>

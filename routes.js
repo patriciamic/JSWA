@@ -42,7 +42,7 @@ async function getLatestPhoto(ctx) {
 
 async function getAllPosts(ctx) {
     let mdata = ctx.request.body;
-    let res = await pool.executeQuery("select idUser, photo, description from posts where idUser!=" + mdata.idUser);
+    let res = await pool.executeQuery("select username, idUser, photo, description from posts join users on posts.idUser= users.id where idUser!=" + mdata.idUser);
     let resStringfy = JSON.stringify(res);
     console.log(resStringfy);
     ctx.body = { message: `${resStringfy}` };
@@ -84,10 +84,10 @@ function writeImage(idUser, image, description, code) {
         console.log("aici 1");
         base64Img.img(image, 'imagesPosts', path, async function(err, filepath) {
             if (err) { rej(err) }
-           // await writeFile({ userID: idUser, image: filepath.substring(5), description: description });
+            // await writeFile({ userID: idUser, image: filepath.substring(5), description: description });
             res('done');
         });
-console.log("aici 2");
+        console.log("aici 2");
         let result = await pool.executeQuery(`INSERT INTO posts (description, photo, idUser, code) VALUES ("${description}", "${path}", "${idUser}", "${code}")`);
 
 

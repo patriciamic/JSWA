@@ -1,6 +1,6 @@
 // functie care se apeleaza ea 
 (function() {
-    const app = angular.module('app', ['ngRoute', 'ngStorage', 'ngDropImage', 'toaster', 'ngAnimate']);
+    const app = angular.module('app', ['ngRoute', 'ngStorage', 'ngDropImage', 'toaster', 'ngAnimate', 'ngclipboard']);
 
     // app.run($rootScope => {
     //     $rootScope.$on("$locationChangeStart", (event, next, current) => {
