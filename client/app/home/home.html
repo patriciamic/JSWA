@@ -79,12 +79,29 @@
             <div style="float:right;width:75%; border:thin">
                 <h1 type="text" ng-model="vm.username" style="margin-top: 2%">Welcome, {{vm.username}} ! </h1>
                 <form class="form-inline my-2 my-lg-0 text-center">
-                    <input class="form-control col-md-10" type="text" placeholder="Search">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                    <input class="form-control col-md-10" type="text" placeholder="Search" ng-model="vm.searchFor">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit" ng-click="vm.search()">Search</button>
                 </form>
                 <!-- <h2>Explore the latest templates!</h2> -->
 
                 <div style="margin-top: 2%;" align="center">
+
+                    <!-- <div class="card border-dark mb-3 " style="width: 20rem; max-height: 21rem; min-height: 21rem;float:left" ng-if="vm.isSearching" ng-repeat="item in vm.filteredsearch">
+                        <div class="card-body">
+                            <div class="card-text text-center " style="margin:2%; font-size: 20px">{{item.username}}</div>
+                            <p class="lead" style="margin-top: 1%; margin-right: 1%" align="right">
+                                <button type="submit" class="btn btn-info btn-lg" style="align-self: right" ng-click="vm.showItem(item)"><i class="fa fa-info-circle"></i></button>
+                            </p>
+                            <div class="text-center" style="margin-top:1%">
+                                <img src="{{item.photo}}" alt="asta e poza" class="img-rounded" style="
+                                        width:90%;
+                                        height:50%;" />
+                            </div>
+
+                        </div>
+                    </div> -->
+
+
                     <div class="card border-dark mb-3 " style="width: 20rem; max-height: 21rem; min-height: 21rem;float:left" ng-repeat="item in vm.posts">
                         <div class="card-body">
                             <div class="card-text text-center " style="margin:2%; font-size: 20px">{{item.username}}</div>
@@ -114,13 +131,16 @@
                 <div style="color: #000">
 
                     <div class="card mb-3 " style=" margin-top:3%;">
+                        
                         <div class="card-body">
 
                             <p class="lead" style="margin-top: 1%; margin-right: 1%" align="right">
-
+                            
                                 <button type="submit" class="btn btn-info btn-lg" style="align-self: right" title="Copy code" ngclipboard data-clipboard-text="{{vm.copyToClipboard}}" ng-click="vm.copy()"><i class="fa fa-copy"></i></button>
                                 <button type="submit" class="btn btn-danger btn-lg" style="align-self: right" title="Close" ng-click="vm.close()"><i class="fa fa-window-close"></i></button>
                             </p>
+
+                            <p type="text" style="color: white; text-align: center; font-size: 30px">{{vm.usernameToShow}}</p>
                             <div class="text-center" style="margin-top:1%">
                                 <img src="{{vm.photoToShow}}" alt="asta e poza" class="img-rounded" style="
                                                     width:100%;
@@ -128,9 +148,9 @@
                             </div>
                             <div class="card-text text-center " style="margin:2%; color:whitesmoke; font-size: 25px">{{vm.descriptionToShow}}</div>
                             <p style="color:white; font-size: 30px; text-align: center; margin-top:10%"><strong>Here is the code</strong></p>
-                            <p class="lead" style="margin-top: 1%; margin-right: 1%;" align="right">
+                            <!-- <p class="lead" style="margin-top: 1%; margin-right: 1%;" align="right">
                                 <button type="submit" class="btn btn-info btn-lg" style="align-self: right" title="Copy code" ngclipboard data-clipboard-text="{{vm.copyToClipboard}}" ng-click="vm.copy()"><i class="fa fa-copy"></i></button>
-                            </p>
+                            </p> -->
                             <textarea readonly id="form7" class="md-textarea form-control" style="height: 100%px; min-height: 300px ;">{{vm.codeToShow}}</textarea>
 
                         </div>
