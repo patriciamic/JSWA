@@ -1,10 +1,10 @@
-<div class="col-md-9" style="align-self: center" ng-controller="NewPhotoCtrl as vm">
+<div class="col-md-12" style="align-self: center" ng-controller="NewPhotoCtrl as vm">
 
-    <div class="jumbotron col-md-12" style=" margin: auto; margin-left:16%; background:  rgba(66,66,66, 0.4);">
+    <!-- <div class="jumbotron col-md-12" style=" margin: auto; margin-left:16%; background:  rgba(66,66,66, 0.4);"> -->
         <!-- style="width: 800px; height: 600px; margin: auto; margin-top: 5%; background:  rgba(66,66,66, 0.3); " -->
 
 
-        <div class="col-md-12" style="height: 21%; margin-top:-10%;background-color: rgb(48,48,48)">
+        <!-- <div class="col-md-12" style="height: 21%; margin-top:-5%;background-color: rgb(48,48,48)">
             <h1 style="margin-top:3%; color: rgb(48,48,48)">__></h1>
             <h3>Discover the top designers & creatives</h3>
             <h6>TemplateSHOW is the leading destination to find & showcase creative work and home
@@ -12,7 +12,7 @@
             <h6>The Heart of the Designer Community.</h6>
             <h6>We're on a mission to build the world's best community for creatives to share and
                 grow.</h6>
-        </div>
+        </div> -->
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand">
@@ -52,15 +52,15 @@
             </div>
         </nav>
 
-        <div id="myTabContent" class="tab-content" style="margin-top: 5%">
-            <div class="tab-pane fade" id="home">
+        <div id="myTabContent" class="col-md-6 " style="margin-top: 5%; align-self: center" align="center">
+            <!-- <div class="tab-pane fade" id="home">
                 <p>Users:</p>
                 <table>
                     <tr ng-repeat="x in records">
                         <td>{{x}}</td>
                     </tr>
                 </table>
-            </div>
+            </div> -->
             <div class="tab-pane fade active show" id="profile">
                 <!-- TODO pagina profile -->
                 <div class="rounded-circle text-center round-magic-div btn-success">{{vm.username}}</div>
@@ -93,5 +93,5 @@
 
         </div>
         <!-- </div> -->
-    </div>
+    <!-- </div> -->
 </div>
