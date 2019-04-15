@@ -1,5 +1,5 @@
 (function() {
-    angular.module('app').controller('ProfileCtrl', function($scope, $http) {
+    angular.module('app').controller('ProfileCtrl', function($scope, $http, toaster) {
 
         const vm = this;
 
@@ -44,29 +44,19 @@
             vm.displayModal = false;
         }
 
+
+        vm.copy = () => {
+            console.log(vm.copyToClipboard);
+            toaster.pop("info", "Code Copied!");
+        }
+
         vm.showItem = function(item) {
-
-            console.log(item.description);
-
-            console.log(searchCodeForItem(item));
-
-            vm.codeToShow = searchCodeForItem(item);
-            console.log(vm.codeToShow);
-
+            vm.codeToShow = item.code;
+            vm.descriptionToShow = item.description;
+            console.log(vm.descriptionToShow)
+            vm.copyToClipboard = item.code;
             vm.displayModal = true;
-
         }
-
-
-        function searchCodeForItem(item) {
-            for (const elem of vm.posts) {
-                console.log(item);
-                if (item.description.valueOf() == elem.description.valueOf()) {
-                    return item.code;
-                }
-            }
-        }
-
 
     })
 })()
