@@ -7,8 +7,6 @@
         vm.description = '';
         localStorage.removeItem("ng-drop-image-image");
 
-        // console.log("code: " + vm.code);
-
         vm.addNewPost = () => {
             console.log("code: " + vm.code);
             if (vm.description != '') {

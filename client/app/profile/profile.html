@@ -109,18 +109,18 @@
             </div>
 
 
-            <div style="margin-top: 13%;margin-left: 10% " align="center">
-                <div class="card border-dark mb-3" style="width: 27rem; max-height: 35rem; min-height: 30rem;   margin-top:3%; float:left" ng-repeat="item in vm.posts">
+            <div style="margin-top: 13%;margin-left: 10% ;" align="center">
+                <div class="card border-dark mb-3" style="width: 27rem; max-height: 25rem; min-height: 25rem;   margin-top:3%; float:left" ng-repeat="item in vm.posts">
                     <div class="card-body">
                         <p class="lead" style="margin-top: 1%; margin-right: 1%" align="right">
-                            <button type="submit" class="btn btn-success btn-lg" style="align-self: right" ng-click="vm.showItem(item)"><i class="fa fa-code"></i></button>
+                            <button type="submit" class="btn btn-info btn-lg" style="align-self: right" ng-click="vm.showItem(item)"><i class="fa fa-info-circle"></i></button>
                         </p>
                         <div class="text-center" style="margin-top:1%">
                             <img src="{{item.photo}}" alt="asta e poza" class="img-rounded" style="
                                 width:100%;
                                 height: 100%;" />
                         </div>
-                        <div class="card-text text-center " style="margin:2%">{{item.description}}</div>
+                        <!-- <div class="card-text text-center " style="margin:2%">{{item.description}}</div> -->
                     </div>
 
 
@@ -137,24 +137,25 @@
         <div id="loading" class="modal" ng-if="vm.displayModal">
             <div class="modal-content" style="width: 600px;">
                 <div style="color: #000">
-                    <p class="lead" style="margin-top: 1%; margin-right: 1%" align="right">
-                        <!-- <button type="submit" class="btn btn-info btn-lg" style="align-self: right" ngClipboard ng-click="vm.copyToClipboard()"><i class="fa fa-copy"></i></button> -->
-                        <button type="submit" class="btn btn-info btn-lg" style="align-self: right" ngclipboard data-clipboard-text="{{vm.copyToClipboard}}" ng-click="vm.copy()"><i class="fa fa-copy"></i></button>
-                        <button type="submit" class="btn btn-danger btn-lg" style="align-self: right" ng-click="vm.close()"><i class="fa fa-window-close"></i></button>
-                    </p>
-
-                    <textarea readonly id="form7" class="md-textarea form-control" style="height: 100%px; min-height: 500px">{{vm.codeToShow}}</textarea>
-
-                    <!-- <textarea readonly id="form8" class="md-textarea form-control" style="height: 100%;">{{vm.descriptionToShow}}</textarea> -->
-
-                    <div class="card border-dark mb-3" style=" margin-top:3%;">
+                    <div class="card mb-3" style=" margin-top:3%;">
                         <div class="card-body">
-                            <div class="card-text text-center " style="margin:2%; color:whitesmoke">{{vm.descriptionToShow}}</div>
+
+                            <p class="lead" style="margin-top: 1%; margin-right: 1%" align="right">
+                                <!-- <button type="submit" class="btn btn-info btn-lg" style="align-self: right" ngClipboard ng-click="vm.copyToClipboard()"><i class="fa fa-copy"></i></button> -->
+                                <button type="submit" class="btn btn-info btn-lg" style="align-self: right" title="Copy code" ngclipboard data-clipboard-text="{{vm.copyToClipboard}}" ng-click="vm.copy()"><i class="fa fa-copy"></i></button>
+                                <button type="submit" class="btn btn-danger btn-lg" style="align-self: right" title="Close" ng-click="vm.close()"><i class="fa fa-window-close"></i></button>
+                            </p>
+                            <div class="text-center" style="margin-top:1%">
+                                <img src="{{vm.photoToShow}}" alt="asta e poza" class="img-rounded" style="
+                                            width:100%;
+                                            height: 100%;" />
+                            </div>
+                            <div class="card-text text-center " style="margin:2%; color:whitesmoke; font-size: 25px">{{vm.descriptionToShow}}</div>
+                            <p style="color:white; font-size: 30px; text-align: center"><strong>Here is the code</strong></p>
+                            <textarea readonly id="form7" class="md-textarea form-control" style="height: 100%px; min-height: 300px ;">{{vm.codeToShow}}</textarea>
                         </div>
-
-
-
                     </div>
+
                 </div>
             </div>
         </div>

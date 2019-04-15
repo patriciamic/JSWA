@@ -3,8 +3,6 @@
 
         const vm = this;
 
-
-
         vm.showUsername = () => {
             //console.log(localStorage.getItem('username'));
             vm.username = localStorage.getItem('username');
@@ -44,7 +42,6 @@
             vm.displayModal = false;
         }
 
-
         vm.copy = () => {
             console.log(vm.copyToClipboard);
             toaster.pop("info", "Code Copied!");
@@ -53,8 +50,8 @@
         vm.showItem = function(item) {
             vm.codeToShow = item.code;
             vm.descriptionToShow = item.description;
-            console.log(vm.descriptionToShow)
             vm.copyToClipboard = item.code;
+            vm.photoToShow = item.photo;
             vm.displayModal = true;
         }
 
