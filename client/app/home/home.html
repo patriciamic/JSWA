@@ -45,12 +45,8 @@
             </div>
         </nav>
 
-        <form class="form-inline my-2 my-lg-0 text-center">
-            <input class="form-control col-md-6" type="text" placeholder="Search">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-        </form>
 
-        <h1 type="text" ng-model="vm.username" style="margin-top: 2%">Welcome, {{vm.username}} ! </h1>
+
 
 
 
@@ -81,7 +77,12 @@
             </div>
 
             <div style="float:right;width:75%; border:thin">
-                <h2>Explore the latest templates!</h2>
+                <h1 type="text" ng-model="vm.username" style="margin-top: 2%">Welcome, {{vm.username}} ! </h1>
+                <form class="form-inline my-2 my-lg-0 text-center">
+                    <input class="form-control col-md-10" type="text" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <!-- <h2>Explore the latest templates!</h2> -->
 
                 <div style="margin-top: 2%;" align="center">
                     <div class="card border-dark mb-3 " style="width: 23rem; max-height: 27rem; min-height: 25rem;float:left" ng-repeat="item in vm.posts">
