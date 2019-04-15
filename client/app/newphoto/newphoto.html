@@ -3,24 +3,40 @@
     <div class="jumbotron col-md-12" style=" margin: auto; margin-left:16%; background:  rgba(66,66,66, 0.4);">
         <!-- style="width: 800px; height: 600px; margin: auto; margin-top: 5%; background:  rgba(66,66,66, 0.3); " -->
 
+
+        <div class="col-md-12" style="height: 21%; margin-top:-10%;background-color: rgb(48,48,48)">
+            <h1 style="margin-top:3%; color: rgb(48,48,48)">__></h1>
+            <h3>Discover the top designers & creatives</h3>
+            <h6>TemplateSHOW is the leading destination to find & showcase creative work and home
+                to the world's best design progessional.</h6>
+            <h6>The Heart of the Designer Community.</h6>
+            <h6>We're on a mission to build the world's best community for creatives to share and
+                grow.</h6>
+        </div>
+
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand">
-                <h1><i class="fa fa-mobile" style="margin-right: 5px"></i>templatesHOW</h1>
+
+                <h1>template<strong>SH<i class="fa fa-mobile" style="margin-right: 5px"></i>W</strong></h1>
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span>
-                    </button>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
+                aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
             <div class="collapse navbar-collapse" id="navbarColor03">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item ">
-                        <a class="nav-link " data-toggle="tab" href=""><i class="fa fa-home" style="margin-right: 5px;"></i>Home</a>
+                        <a class="nav-link " data-toggle="tab" href="#!home"><i class="fa fa-home"
+                                style="margin-right: 5px;"></i>Home</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link active" data-toggle="tab" href="#!profile"><i class="fa fa-user"style="margin-right: 5px;"></i>Profile</a>
+                        <a class="nav-link active" data-toggle="tab" href="#!profile"><i class="fa fa-user"
+                                style="margin-right: 5px;"></i>Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#"><i class="fa fa-bell"style="margin-right: 5px;"></i></i>News</a>
+                        <a class="nav-link disabled" href="#"><i class="fa fa-bell"
+                                style="margin-right: 5px;"></i></i>News</a>
                     </li>
                     <!-- <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#"><i class="fa fa-sign-out"style="margin-right: 5px;"></i>Log out</a>
@@ -30,7 +46,8 @@
                     <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search">
                         <button class="btn btn-secondary my-2 my-sm-0" type="submit">Log out</button> -->
                     <!-- <h6>{{vm.username}}</h6> -->
-                    <a class="nav-link" data-toggle="tab" href="#"><i class="fa fa-sign-out"style="margin-right: 5px;"></i>Log out</a>
+                    <a class="nav-link" data-toggle="tab" href="#"><i class="fa fa-sign-out"
+                            style="margin-right: 5px;"></i>Log out</a>
                 </form>
             </div>
         </nav>
@@ -46,35 +63,35 @@
             </div>
             <div class="tab-pane fade active show" id="profile">
                 <!-- TODO pagina profile -->
-
-                <div class="rounded-circle text-center round-magic-div">{{vm.username}}</div>
+                <div class="rounded-circle text-center round-magic-div btn-success">{{vm.username}}</div>
             </div>
 
-            <div class="jumbotron" style=" height: 1080px;background: rgba(66,66,66, 0.0);">
-                <hr class="my-4" style="margin-top:20%">
+            <!-- <div class="jumbotron" style=" height: 1080px;background: rgba(66,66,66, 0.0);"> -->
+            <hr class="my-4" style="margin-top:20%">
 
 
-                <h5 class="display-4 text-center" style="margin-bottom: 5%">Create a new post</h5>
-                <!-- Drag and drop the image here! -->
-                <div class="content file-drop-zone col-md-12" ng-drop-image ng-model="vm.image">
-                    <span ng-if="vm.image===''">Drop image here</span>
-                    <img class="col-md-12" ng-src="{{vm.image}}" />
-                </div>
-
-                <div style="margin-top: 3%">
-                    <label for="form7">Description</label>
-                    <textarea id="form7" class="md-textarea form-control" rows="3" ng-model="vm.description"></textarea>
-                </div>
-
-                <div style="margin-top: 3%">
-                    <label for="form7">Add code</label>
-                    <textarea id="form7" class="md-textarea form-control" rows="10" ng-model="vm.code"></textarea>
-                </div>
-
-
-                <button type="submit" class="btn btn-success btn-lg" style="align-self: right; margin-top: 5%" ng-click="vm.addNewPost()">Add</button>
-
+            <h5 class="display-4 text-center" style="margin-bottom: 5%; margin-top:8%">Create a new post</h5>
+            <!-- Drag and drop the image here! -->
+            <div class="content file-drop-zone col-md-12" ng-drop-image ng-model="vm.image">
+                <span ng-if="vm.image===''">Drop image here</span>
+                <img class="col-md-12" ng-src="{{vm.image}}" />
             </div>
+
+            <div style="margin-top: 3%">
+                <label for="form7">Description</label>
+                <textarea id="form7" class="md-textarea form-control" rows="3" ng-model="vm.description"></textarea>
+            </div>
+
+            <div style="margin-top: 3%">
+                <label for="form7">Add code</label>
+                <textarea id="form7" class="md-textarea form-control" rows="10" ng-model="vm.code"></textarea>
+            </div>
+
+
+            <button type="submit" class="btn btn-success btn-lg" style="align-self: right; margin-top: 5%"
+                ng-click="vm.addNewPost()">Add</button>
+
         </div>
+        <!-- </div> -->
     </div>
 </div>
