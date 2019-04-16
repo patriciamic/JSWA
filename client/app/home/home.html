@@ -10,8 +10,7 @@
 
             <h1>template<strong>SH<i class="fa fa-mobile" style="margin-right: 5px"></i>W</strong></h1>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
-            aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -41,23 +40,21 @@
 
 
 
-    <div class="col-md-12"style="background-color: rgb(38 ,166,154)">
-        <div style="float:right;width:76%;">
-            <div class="col-md-12" style="height: 400px;background-color: rgb(38 ,166,154); margin-left:-2%;">
+    <div class="col-md-12" style="background-color: rgb(38 ,166,154)">
+        <div style="float:right;width:80%;">
+            <div style="height: 400px;background-color: rgb(38 ,166,154); margin-left:-10%;">
                 <h1 style="height: 100px;color: rgb(38 ,166,154);">>__</h1>
-                <h3>Discover the top designers & creatives</h3>
-                <h6>TemplateSHOW is the leading destination to find & showcase creative work and home to the world's
-                    best
-                    design
-                    progessional.</h6>
-                <h6>The Heart of the Designer Community.</h6>
-                <h6>We're on a mission to build the world's best community for creatives to share and grow.
+                <h3 style="margin-left:18%">Discover the top designers & creatives</h3>
+                <h6 style="margin-left:18%">TemplateSHOW is the leading destination to find & showcase creative work and home to the world's best design progessional.
+                </h6>
+                <h6 style="margin-left:18%">The Heart of the Designer Community.</h6>
+                <h6 style="margin-left:18%">We're on a mission to build the world's best community for creatives to share and grow.
                 </h6>
             </div>
-            
+
         </div>
         <div style="float:left;width:20%;">
-            <div class="col-md-12"> <img style="width:400px; height:400px"src="https://media.giphy.com/media/8VkgrPdxMh0oo/giphy.gif" alt=""></div>
+            <div> <img style="width:400px; height:400px" src="https://media.giphy.com/media/8VkgrPdxMh0oo/giphy.gif" alt=""></div>
 
         </div>
     </div>
@@ -119,82 +116,79 @@
                     </div> -->
 
 
-                <div class="card border-light mb-3 "
-                    style="width: 20rem; max-height: 21rem; min-height: 21rem;float:left; margin-right:1px;"
-                    ng-repeat="item in vm.posts">
+                <div class="card border-light mb-3 " style="width: 20rem; max-height: 21rem; min-height: 21rem;float:left; margin-right:1px;" ng-repeat="item in vm.posts">
                     <div class="card-body">
 
-                        <p class="lead" style="margin-top: 1%; margin-right: 1%" align="right">
-                            <button title="show info" type="submit" class="btn btn-secondary " style="align-self: right"
-                                ng-click="vm.showItem(item)"><i class="fa fa-info-circle"></i></button>
-                            <div class="card-text text-center " style="margin:2%; font-size: 20px">{{item.username}}
+                        <p class="lead" align="right">
+
+                            <button title="show info" type="submit" class="btn btn-secondary " style="align-self: right;" ng-click="vm.showItem(item)"><i class="fa fa-info-circle"></i></button>
+                            <div class="card-text text-center " style=" font-size: 20px">{{item.username}}
 
                         </p>
 
-                        <div class="text-center" style="margin-top:1%">
+                        <div class="text-center" style="margin-top:1%; height: 270px">
                             <img src="{{item.photo}}" alt="asta e poza" class="img-rounded" style="
-                                        width:90%;
-                                        height:50%;" />
+                                       max-width:100%;
+                                        max-height:70%;
+                                      
+                                        object-fit: contain" />
                         </div>
 
+                        </div>
                     </div>
                 </div>
+
             </div>
-
+            <div style="clear:both; font-size:1px;"></div>
         </div>
-        <div style="clear:both; font-size:1px;"></div>
-    </div>
 
 
 
 
 
-    <div id="loading" class="modal" ng-if="vm.displayModal">
-        <div class="modal-content" style="width: 600px;">
-            <div style="color: #000">
+        <div id="loading" class="modal" ng-if="vm.displayModal">
+            <div class="modal-content" style="width: 600px;">
+                <div style="color: #000">
 
-                <div class="card mb-3 " style=" margin-top:3%;">
+                    <div class="card mb-3 " style=" margin-top:3%;">
 
-                    <div class="card-body">
+                        <div class="card-body">
 
-                        <p class="lead" style="margin-top: 1%; margin-right: 1%" align="right">
+                            <p class="lead" style="margin-top: 1%; margin-right: 1%" align="right">
 
-                            <button type="submit" class="btn btn-info btn-lg" style="align-self: right"
-                                title="Copy code" ngclipboard data-clipboard-text="{{vm.copyToClipboard}}"
-                                ng-click="vm.copy()"><i class="fa fa-copy"></i></button>
-                            <button type="submit" class="btn btn-danger btn-lg" style="align-self: right" title="Close"
-                                ng-click="vm.close()"><i class="fa fa-window-close"></i></button>
-                        </p>
+                                <button type="submit" class="btn btn-info btn-lg" style="align-self: right" title="Copy code" ngclipboard data-clipboard-text="{{vm.copyToClipboard}}" ng-click="vm.copy()"><i class="fa fa-copy"></i></button>
+                                <button type="submit" class="btn btn-danger btn-lg" style="align-self: right" title="Close" ng-click="vm.close()"><i class="fa fa-window-close"></i></button>
+                            </p>
 
-                        <p type="text" style="color: white; text-align: center; font-size: 30px">{{vm.usernameToShow}}
-                        </p>
-                        <div class="text-center" style="margin-top:1%">
-                            <img src="{{vm.photoToShow}}" alt="asta e poza" class="img-rounded" style="
-                                                    width:100%;
-                                                    height: 100%;" />
-                        </div>
-                        <div class="card-text text-center " style="margin:2%; color:whitesmoke; font-size: 25px">
-                            {{vm.descriptionToShow}}</div>
-                        <p style="color:white; font-size: 30px; text-align: center; margin-top:10%"><strong>Here is the
+                            <p type="text" style="color: white; text-align: center; font-size: 30px">{{vm.usernameToShow}}
+                            </p>
+                            <div class="text-center" style="margin-top:1%;">
+                                <img src="{{vm.photoToShow}}" alt="no image" class="img-rounded" style="
+                                                    max-width:100%;
+                                                    max-height: 100%;
+                                                    object-fit: contain" />
+                            </div>
+                            <div class="card-text text-center " style="margin:2%; color:whitesmoke; font-size: 25px">
+                                {{vm.descriptionToShow}}</div>
+                            <p style="color:white; font-size: 30px; text-align: center; margin-top:10%"><strong>Here is the
                                 code</strong></p>
-                        <!-- <p class="lead" style="margin-top: 1%; margin-right: 1%;" align="right">
+                            <!-- <p class="lead" style="margin-top: 1%; margin-right: 1%;" align="right">
                                 <button type="submit" class="btn btn-info btn-lg" style="align-self: right" title="Copy code" ngclipboard data-clipboard-text="{{vm.copyToClipboard}}" ng-click="vm.copy()"><i class="fa fa-copy"></i></button>
                             </p> -->
-                        <textarea readonly id="form7" class="md-textarea form-control"
-                            style="height: 100%px; min-height: 300px ;">{{vm.codeToShow}}</textarea>
+                            <textarea readonly id="form7" class="md-textarea form-control" style="height: 100%px; min-height: 300px ;">{{vm.codeToShow}}</textarea>
 
+                        </div>
                     </div>
+
                 </div>
+                <!-- </div> -->
 
             </div>
-            <!-- </div> -->
+
+
 
         </div>
-
-
-
     </div>
-</div>
 
 
 </div>
@@ -213,15 +207,15 @@
         background-color: rgb(0, 0, 0);
         background-color: rgba(0, 0, 0, 0.4);
     }
-
+    
     .modal-content {
         background-color: "secondary";
-        margin: 15% auto;
+        margin: 3% auto;
         padding: 20px;
         border: 1px "secondary";
         width: 15%;
     }
-
+    
     .polaroid {
         /* width: 250px; */
         box-shadow: 0 4px 8px 0 rgba(48, 48, 48, 0.2), 0 6px 20px 0 rgba(1, 0, 0, 0.19);
