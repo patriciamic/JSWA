@@ -1,5 +1,5 @@
-(function () {
-    angular.module('app').controller('TestCtrl', function ($http, toaster) {
+(function() {
+    angular.module('app').controller('TestCtrl', function($http, toaster) {
 
         const vm = this;
 
@@ -74,11 +74,11 @@
             toaster.pop("info", "Code Copied!");
         }
 
-        vm.showItem = function (item) {
-            console.log(vm.codeToShow);
-            console.log(vm.descriptionToShow);
-            console.log(vm.copyToClipboard);
-            console.log(vm.photoToShow);
+        vm.showItem = function(item) {
+            // console.log(vm.codeToShow);
+            // console.log(vm.descriptionToShow);
+            // console.log(vm.copyToClipboard);
+            // console.log(vm.photoToShow);
             console.log(item);
 
             vm.codeToShow = item.code;
@@ -88,19 +88,18 @@
             vm.usernameToShow = item.username;
             vm.displayModal = true;
 
-            console.log(vm.displayModal)
+            // console.log(vm.displayModal)
         }
 
         vm.filteredsearch = vm.posts;
         vm.searchFor = "";
         vm.search = () => {
             vm.posts = [];
-            if(vm.searchFor == "") {
+            if (vm.searchFor == "") {
                 officialPosts.forEach(el => {
                     vm.posts.push(el);
                 })
-            }
-            else{
+            } else {
                 vm.filteredsearch = officialPosts.map((value, index, array) => {
                     if (value.username.includes(vm.searchFor)) {
                         console.log(value);
@@ -113,14 +112,14 @@
                         vm.posts.push(el);
                     }
                 })
-    
+
 
             }
-        
 
-         
 
-        
+
+
+
         }
 
     })
