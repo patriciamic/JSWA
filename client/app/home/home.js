@@ -1,5 +1,5 @@
-(function() {
-    angular.module('app').controller('TestCtrl', function($http, toaster) {
+(function () {
+    angular.module('app').controller('TestCtrl', function ($http, toaster) {
 
         const vm = this;
 
@@ -27,7 +27,8 @@
 
 
 
-        //for test
+
+        let officialPosts = [];
 
 
         vm.posts = [];
@@ -47,7 +48,11 @@
                         let photo = element.photo;
                         element.photo = "http://localhost:3000/" + photo + ".jpg ";
                         console.log(element.photo);
+                        //aici crapa inca 
+                        officialPosts.push(element);
                     });
+
+
 
                 })
                 .catch(err => {
@@ -56,6 +61,7 @@
         }
 
         vm.getPhotos();
+
 
         vm.displayModal = false;
 
@@ -68,7 +74,7 @@
             toaster.pop("info", "Code Copied!");
         }
 
-        vm.showItem = function(item) {
+        vm.showItem = function (item) {
             console.log(vm.codeToShow);
             console.log(vm.descriptionToShow);
             console.log(vm.copyToClipboard);
@@ -79,9 +85,42 @@
             vm.descriptionToShow = item.description;
             vm.copyToClipboard = item.code;
             vm.photoToShow = item.photo;
+            vm.usernameToShow = item.username;
             vm.displayModal = true;
 
             console.log(vm.displayModal)
+        }
+
+        vm.filteredsearch = vm.posts;
+        vm.searchFor = "";
+        vm.search = () => {
+            vm.posts = [];
+            if(vm.searchFor == "") {
+                officialPosts.forEach(el => {
+                    vm.posts.push(el);
+                })
+            }
+            else{
+                vm.filteredsearch = officialPosts.map((value, index, array) => {
+                    if (value.username.includes(vm.searchFor)) {
+                        console.log(value);
+                        return value;
+                    }
+                })
+
+                vm.filteredsearch.forEach(el => {
+                    if (el) {
+                        vm.posts.push(el);
+                    }
+                })
+    
+
+            }
+        
+
+         
+
+        
         }
 
     })

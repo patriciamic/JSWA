@@ -42,7 +42,11 @@ async function getLatestPhoto(ctx) {
 
 async function getAllPosts(ctx) {
     let mdata = ctx.request.body;
+<<<<<<< HEAD
     let res = await pool.executeQuery("select username, idUser, photo, description, code from posts join users on posts.idUser= users.id where idUser!=" + mdata.idUser);
+=======
+    let res = await pool.executeQuery("select username, idUser, photo, description, code from posts join users on posts.idUser= users.id where idUser!=" + mdata.idUser + " order by posts.id desc");
+>>>>>>> master
     let resStringfy = JSON.stringify(res);
     console.log(resStringfy);
     ctx.body = { message: `${resStringfy}` };
