@@ -48,6 +48,8 @@
         }
 
         vm.showItem = function(item) {
+            console.log("clicked show item");
+            console.log(item);
             vm.codeToShow = item.code;
             vm.descriptionToShow = item.description;
             vm.copyToClipboard = item.code;

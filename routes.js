@@ -10,7 +10,10 @@ module.exports = {
     getUsers,
     postPhoto,
     getLatestPhoto,
-    getAllPosts
+    getAllPosts,
+    postNewSubscriber,
+    postDeleteUser,
+    getAllSubribers
 }
 
 
@@ -20,6 +23,29 @@ let latestDescription = "empty";
 function getTest(ctx) {
     ctx.body = "getTest";
 }
+
+async function postNewSubscriber(ctx) {
+    let mdata = ctx.request.body;
+    let res = await pool.executeQuery(`INSERT INTO subscribers (idUserFrom, idUserTo) VALUES ("${mdata.idUserFrom}", "${mdata.idUserTo}")`);
+    ctx.body = { message: "done" };
+}
+
+async function postDeleteUser(ctx) {
+    let mdata = ctx.request.body;
+    let res = await pool.executeQuery(`DELETE FROM subscribers WHERE idUserFrom ="${mdata.idUserFrom}" and idUserTo="${mdata.idUserTo}"`);
+    ctx.body = { message: "done" };
+}
+
+async function getAllSubribers(ctx) {
+    let mdata = ctx.request.body;
+    console.log(mdata.idUserFrom);
+    let res = await pool.executeQuery(`select users.username, subscribers.idUserTo from subscribers join users on users.id = subscribers.idUserTo where subscribers.idUserFrom = "${mdata.idUserFrom}"`);
+    ctx.body = res;
+
+    // ctx.body = { message: JSON.stringify(res) };
+
+}
+
 
 async function getUsers(ctx) {
     ctx.body = await pool.executeQuery(`Select username from Users`);

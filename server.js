@@ -21,6 +21,12 @@ router.post('/newUser', routes.postNewUser);
 
 router.post('/addNewPost', routes.postPhoto);
 
+router.post('/addNewSubscriber', routes.postNewSubscriber);
+
+router.post('/deleteSubscriber', routes.postDeleteUser);
+
+router.post('/allSubsribers', routes.getAllSubribers);
+
 app
     .use(serve('client'))
     .use(serve('imagesPosts'))
