@@ -32,7 +32,7 @@
 
 
         vm.posts = [];
-
+        vm.allSubsribers = [];
 
         vm.getPhotos = () => {
             $http.post('/getAllPosts', { idUser: localStorage.getItem("idUser") })
@@ -64,8 +64,8 @@
 
 
         vm.displayModal = false;
-        vm.isNotSubscribed = true;
-        vm.isSubscribed = false;
+        // vm.isNotSubscribed = true;
+        // vm.isSubscribed = false;
 
         vm.close = () => {
             vm.displayModal = false;
@@ -86,8 +86,24 @@
             vm.copyToClipboard = item.code;
             vm.photoToShow = item.photo;
             vm.usernameToShow = item.username;
-            vm.displayModal = true;
+
             itemToShow = item;
+
+
+
+            vm.allSubsribers.forEach(elem => {
+                console.log(elem.username, item.username);
+                if (elem.username.valueOf() == item.username.valueOf()) {
+                    console.log(vm.isNotSubscribed, vm.isSubscribed);
+                    vm.isNotSubscribed = false;
+                    vm.isSubscribed = true;
+                } else {
+                    vm.isNotSubscribed = true;
+                    vm.isSubscribed = false;
+                }
+            })
+
+            vm.displayModal = true;
 
         }
 
@@ -117,11 +133,12 @@
             }
         }
 
-        vm.allSubsribers = [];
+
         getAllSubribers = function() {
             $http.post('/allSubsribers', { idUserFrom: localStorage.getItem("idUser") })
                 .then(res => {
                     vm.allSubsribers = res.data;
+                    console.log(vm.allSubsribers);
                 })
                 .catch(err => {
                     console.error(err)
