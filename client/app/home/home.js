@@ -1,5 +1,5 @@
-(function() {
-    angular.module('app').controller('TestCtrl', function($http, toaster) {
+(function () {
+    angular.module('app').controller('TestCtrl', function ($http, toaster) {
 
         const vm = this;
 
@@ -33,6 +33,9 @@
 
         vm.posts = [];
         vm.allSubsribers = [];
+        // vm.isNotSubscribed = true;
+        vm.isSubscribed = false;
+
 
         vm.getPhotos = () => {
             $http.post('/getAllPosts', { idUser: localStorage.getItem("idUser") })
@@ -78,7 +81,7 @@
 
         let itemToShow = {};
 
-        vm.showItem = function(item) {
+        vm.showItem = function (item) {
             console.log(item);
 
             vm.codeToShow = item.code;
@@ -88,21 +91,20 @@
             vm.usernameToShow = item.username;
 
             itemToShow = item;
-
-
-
+            let checked = false;
+            vm.isSubscribed = false;
             vm.allSubsribers.forEach(elem => {
-                console.log(elem.username, item.username);
                 if (elem.username.valueOf() == item.username.valueOf()) {
-                    console.log(vm.isNotSubscribed, vm.isSubscribed);
-                    vm.isNotSubscribed = false;
                     vm.isSubscribed = true;
+                    checked= true;
+                    return;
                 } else {
-                    vm.isNotSubscribed = true;
-                    vm.isSubscribed = false;
+                    if(checked != true){
+                        vm.isSubscribed = false;
+                    }
                 }
             })
-
+         
             vm.displayModal = true;
 
         }
@@ -134,7 +136,7 @@
         }
 
 
-        getAllSubribers = function() {
+        getAllSubribers = function () {
             $http.post('/allSubsribers', { idUserFrom: localStorage.getItem("idUser") })
                 .then(res => {
                     vm.allSubsribers = res.data;
@@ -149,7 +151,7 @@
 
 
 
-        postNewSubscriber = function(idUserTo) {
+        postNewSubscriber = function (idUserTo) {
             $http.post('/addNewSubscriber', { idUserFrom: localStorage.getItem("idUser"), idUserTo: idUserTo })
                 .then(res => {
                     console.log(res.data.message);
@@ -159,7 +161,7 @@
                 });
         }
 
-        postDeleteSubscriber = function(idUserTo) {
+        postDeleteSubscriber = function (idUserTo) {
             $http.post('/deleteSubscriber', { idUserFrom: localStorage.getItem("idUser"), idUserTo: idUserTo })
                 .then(res => {
                     console.log(res.data.message);
@@ -169,24 +171,14 @@
                 });
         }
 
-
-
-
-
         vm.subscribe = () => {
             console.log(vm.isSubscribed);
-            vm.isNotSubscribed = false;
-            vm.isSubscribed = true;
-            postNewSubscriber(itemToShow.idUser);
-
-
-        }
-
-        vm.unSubscribe = () => {
-
-            vm.isNotSubscribed = true;
-            vm.isSubscribed = false;
-            postDeleteSubscriber(itemToShow.idUser);
+            if(vm.isSubscribed == false){
+                postNewSubscriber(itemToShow.idUser);
+            }
+            if(vm.isSubscribed == true){
+                postDeleteSubscriber(itemToShow.idUser);
+            }
         }
 
     })
