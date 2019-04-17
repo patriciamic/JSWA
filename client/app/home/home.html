@@ -76,8 +76,8 @@
                         <div class="tab-pane fade active show" id="home">
                             <!-- <p style="font-size: 30px">Subscribers:</p> -->
                             <table>
-                                <tr ng-repeat="x in vm.records">
-                                    <td>{{x.username}}</td>
+                                <tr ng-repeat="item in vm.allSubsribers">
+                                    <td>{{item.username}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -91,7 +91,7 @@
         </div>
 
         <div class="col-md-12" style="float:right;width:75%; border:thin">
-            <h1 type="text" ng-model="vm.username" style="margin-top: 2%">Welcome, {{vm.username}} ! </h1>
+            <h1 type="text" ng-model="vm.username" style="margin-top: 2%">Welcome, {{vm.usernameToShow}} ! </h1>
             <form class="form-inline my-2 my-lg-0 text-center">
                 <input class="form-control col-md-11" type="text" placeholder="Search" ng-model="vm.searchFor">
                 <button class="btn btn-secondary my-2 my-sm-0 " type="submit" ng-click="vm.search()"><i class="fa fa-search" ></i>Search</button>
@@ -142,15 +142,15 @@
 
                                 <button type="submit" class="btn btn-info btn-lg" style="align-self: right" title="Copy code" ngclipboard data-clipboard-text="{{vm.copyToClipboard}}" ng-click="vm.copy()"><i class="fa fa-copy"></i></button>
                                 <button type="submit" class="btn btn-danger btn-lg" style="align-self: right" title="Close" ng-click="vm.close()"><i class="fa fa-window-close"></i></button>
+
                             </p>
 
-                            <p type="text" style="color: white; text-align: center; font-size: 30px">{{vm.usernameToShow}}
+                            <p type="text" style="color: white; text-align: center; font-size: 30px">
+                                <button type="submit" class="btn btn-info btn-lg" style="align-self: right" title="Subscribe" ng-click="vm.subscribe()" ng-if="vm.isNotSubscribed"><i class="fa fa-hand-o-up"></i></button>
+                                <button type="submit" class="btn btn-secondary btn-lg" style="align-self: right" title="Subscribe" ng-click="vm.unSubscribe()" ng-if="vm.isSubscribed"><i class="fa fa-hand-o-up"></i></button> {{vm.usernameToShow}}
                             </p>
                             <div class="text-center" style="margin-top:1%;">
-                                <img src="{{vm.photoToShow}}" alt="no image" class="img-rounded" style="
-                                                    max-width:100%;
-                                                    max-height: 100%;
-                                                   " />
+                                <img src="{{vm.photoToShow}}" alt="no image" class="img-rounded" style="max-width:100%;max-height: 100%;" />
                             </div>
                             <div class="card-text text-center " style="margin:2%; color:whitesmoke; font-size: 25px">
                                 {{vm.descriptionToShow}}</div>
