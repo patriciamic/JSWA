@@ -3,20 +3,13 @@
 
         const vm = this;
 
-        // vm.records = []
-        // vm.getData = () => {
-        //     let users = [];
-        //     $http.get('/getUsers').then(res => {
-        //         vm.records = res.data;
-        //     }).catch(e => {
-        //         console.error(e)
-        //     });
-
-        //     return users;
-        // }
+        vm.posts = [];
+        vm.allSubsribers = [];
+        vm.isSubscribed = false;
+        vm.displayModal = false;
 
 
-        // vm.getData();
+        let officialPosts = [];
 
         vm.showUsername = () => {
             //console.log(localStorage.getItem('username'));
@@ -24,51 +17,20 @@
         }
         vm.showUsername();
 
-
-
-
-
-        let officialPosts = [];
-
-
-        vm.posts = [];
-        vm.allSubsribers = [];
-        // vm.isNotSubscribed = true;
-        vm.isSubscribed = false;
-
-
         vm.getPhotos = () => {
             $http.post('/getAllPosts', { idUser: localStorage.getItem("idUser") })
                 .then(res => {
-                    //photo = res.data.photo;
-                    //vm.description = res.data.description;
-                    //console.log(JSON.parse(res.data.message)[0]);
                     vm.posts = JSON.parse(res.data.message);
-                    //console.log(vm.posts);
-                    //vm.image = "http://localhost:3000/" + photo + ".jpg ";
-                    //console.log(res.data);
                     vm.posts.forEach(element => {
                         let photo = element.photo;
                         element.photo = "http://localhost:3000/" + photo + ".jpg ";
-                        //console.log(element.photo);
-                        //aici crapa inca 
                         officialPosts.push(element);
                     });
-
-
-
                 })
-                .catch(err => {
-                    console.error(err)
-                });
+                .catch(err => console.error(err));
         }
 
         vm.getPhotos();
-
-
-        vm.displayModal = false;
-        // vm.isNotSubscribed = true;
-        // vm.isSubscribed = false;
 
         vm.close = () => {
             vm.displayModal = false;
@@ -106,22 +68,25 @@
                     }
                 }
             })
-
             vm.displayModal = true;
-
         }
 
         vm.filteredsearch = vm.posts;
         vm.searchFor = "";
         vm.search = () => {
             vm.posts = [];
+            vm.isNotFound = false;
             if (vm.searchFor == "") {
                 officialPosts.forEach(el => {
                     vm.posts.push(el);
                 })
             } else {
                 vm.filteredsearch = officialPosts.map((value, index, array) => {
-                    if (value.username.includes(vm.searchFor)) {
+                    let lowerUser = value.username.toLowerCase();
+                    let lowerDescription = value.description.toLowerCase();
+                    let lowerSearchFor = vm.searchFor.toLowerCase();
+
+                    if (lowerUser.includes(lowerSearchFor) || lowerDescription.includes(lowerSearchFor)) {
                         console.log(value);
                         return value;
                     }
@@ -130,6 +95,9 @@
                 vm.filteredsearch.forEach(el => {
                     if (el) {
                         vm.posts.push(el);
+                    } else {
+                        console.log("nothing found");
+                        vm.isNotFound = true;
                     }
                 })
 
@@ -140,68 +108,34 @@
 
         getAllSubribers = function() {
             $http.post('/allSubsribers', { idUserFrom: localStorage.getItem("idUser") })
-                .then(res => {
-                    vm.allSubsribers = res.data;
-                    console.log(vm.allSubsribers);
-                })
-                .catch(err => {
-                    console.error(err)
-                });
+                .then(res => vm.allSubsribers = res.data)
+                .catch(err => console.error(err));
         }
 
         getAllSubribers();
 
-
-
         postNewSubscriber = function(idUserTo) {
             $http.post('/addNewSubscriber', { idUserFrom: localStorage.getItem("idUser"), idUserTo: idUserTo })
-                .then(res => {
-                    console.log(res.data.message);
-                })
-                .catch(err => {
-                    console.error(err)
-                });
+                .then(res => vm.allSubsribers = res.data)
+                .catch(err => console.error(err));
         }
 
         postDeleteSubscriber = function(idUserTo) {
             $http.post('/deleteSubscriber', { idUserFrom: localStorage.getItem("idUser"), idUserTo: idUserTo })
-                .then(res => {
-                    console.log(res.data.message);
-                })
-                .catch(err => {
-                    console.error(err)
-                });
+                .then(res => vm.allSubsribers = res.data)
+                .catch(err => console.error(err));
         }
 
         vm.subscribe = () => {
-            console.log("is: ", vm.isSubscribed, "if not: ", vm.isNotSubribed);
             if (vm.isSubscribed == false) {
                 postNewSubscriber(itemToShow.idUser);
-                vm.allSubsribers.push(itemToShow);
                 vm.isSubscribed = true;
                 vm.isNotSubribed = false;
-                console.log("is: ", vm.isSubscribed, "if not: ", vm.isNotSubribed);
             } else {
-                // if (vm.isSubscribed == true) {
                 postDeleteSubscriber(itemToShow.idUser);
-                vm.allSubsribers.remByVal(itemToShow);
                 vm.isSubscribed = false;
                 vm.isNotSubribed = true;
-                // }
-                console.log("is: ", vm.isSubscribed, "if not: ", vm.isNotSubribed);
             }
-
-
-        }
-
-        Array.prototype.remByVal = function(val) {
-            for (var i = 0; i < this.length; i++) {
-                if (this[i] === val) {
-                    this.splice(i, 1);
-                    i--;
-                }
-            }
-            return this;
         }
 
     })

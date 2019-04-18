@@ -1,5 +1,5 @@
 (function() {
-    angular.module('app').controller('ProfileCtrl', function($scope, $http, toaster) {
+    angular.module('app').controller('ProfileCtrl', function($http, toaster) {
 
         const vm = this;
 
@@ -15,26 +15,31 @@
         vm.getData = () => {
             $http.post('/getLatesPhoto', { idUser: localStorage.getItem("idUser") })
                 .then(res => {
-                    //photo = res.data.photo;
-                    //vm.description = res.data.description;
-                    //console.log(JSON.parse(res.data.message)[0]);
                     vm.posts = JSON.parse(res.data.message);
-                    console.log(vm.posts);
-                    //vm.image = "http://localhost:3000/" + photo + ".jpg ";
-                    console.log(res.data);
                     vm.posts.forEach(element => {
                         let photo = element.photo;
                         element.photo = "http://localhost:3000/" + photo + ".jpg ";
-                        console.log(element.photo);
                     });
-
                 })
-                .catch(err => {
-                    console.error(err)
-                });
+                .catch(err => console.error(err));
         }
 
         vm.getData();
+
+        vm.noOfFollowing = 0;
+        getAllSubribers = function() {
+            $http.post('/allSubsribers', { idUserFrom: localStorage.getItem("idUser") })
+                .then(res => {
+                    vm.allSubsribers = res.data;
+                    vm.noOfFollowing = vm.allSubsribers.length;
+                })
+                .catch(err => console.error(err));
+        }
+
+        getAllSubribers();
+
+
+
 
         vm.displayModal = false;
 
