@@ -42,7 +42,31 @@
             <div class="rounded-circle text-center round-magic-div btn-success">{{vm.username}}</div>
         </div>
         <hr class="my-4" style="margin-top:5%">
-        <h5 class="display-4 text-center" style="margin-bottom: 5%; margin-top: 5%">Enjoy your creation!</h5>
+
+
+        <div class="btn-group btn-group-toggle " data-toggle="buttons" style="
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 100%;
+                    text-align: center;
+                    display: flex;
+                    margin: 0;
+                    margin-top:5%;
+                    position: absolute;
+                    left: 50%;
+                    -ms-transform: translateX(-50%);
+                    transform: translateX(-50%);
+                ">
+            <label class="btn btn-secondary">
+                <a class="nav-link" data-toggle="tab" href="" style="color:white;">{{vm.noOfFollowing}} Following</a>
+            </label>
+            <label class="btn btn-secondary" style="">
+                <a class="nav-link" data-toggle="tab" href="" style="color:white;">0 Followers</a>
+            </label>
+        </div>
+
+
+        <h5 class="display-4 text-center" style="margin-bottom: 2%; margin-top: 10%">Enjoy your creation!</h5>
 
         <div class="btn-group btn-group-toggle " data-toggle="buttons" style="
                     justify-content: center;
@@ -56,13 +80,13 @@
                     -ms-transform: translateX(-50%);
                     transform: translateX(-50%);
                 ">
-            <label class="btn btn-success">
+            <label class="btn btn-success" style="width:170px">
                 <a class="nav-link" data-toggle="tab" href="#!newphoto" style="color:white;">Add</a>
             </label>
-            <label class="btn btn-success">
+            <label class="btn btn-success" style="width:170px">
                 <a class="nav-link" data-toggle="tab" href="#!profile" style="color:white">Delete</a>
             </label>
-            <label class="btn btn-success ">
+            <label class="btn btn-success" style="width:170px">
                 <a class="nav-link " data-toggle="tab" href="#!profile" style="color:white">Edit</a>
             </label>
         </div>

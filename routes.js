@@ -26,14 +26,16 @@ function getTest(ctx) {
 
 async function postNewSubscriber(ctx) {
     let mdata = ctx.request.body;
-    let res = await pool.executeQuery(`INSERT INTO subscribers (idUserFrom, idUserTo) VALUES ("${mdata.idUserFrom}", "${mdata.idUserTo}")`);
-    ctx.body = { message: "done" };
+    //let res = await pool.executeQuery(`INSERT INTO subscribers (idUserFrom, idUserTo) VALUES ("${mdata.idUserFrom}", "${mdata.idUserTo}")`);
+    let res = await pool.executeQuery(`call InsertSubs(${mdata.idUserFrom}, ${mdata.idUserTo})`);
+    console.log(res[0]);
+    ctx.body = res[0];
 }
 
 async function postDeleteUser(ctx) {
     let mdata = ctx.request.body;
-    let res = await pool.executeQuery(`DELETE FROM subscribers WHERE idUserFrom ="${mdata.idUserFrom}" and idUserTo="${mdata.idUserTo}"`);
-    ctx.body = { message: "done" };
+    let res = await pool.executeQuery(`call DeleteSubs(${mdata.idUserFrom}, ${mdata.idUserTo})`);
+    ctx.body = res[0];
 }
 
 async function getAllSubribers(ctx) {
