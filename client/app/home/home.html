@@ -146,8 +146,11 @@
                             </p>
 
                             <p type="text" style="color: white; text-align: center; font-size: 30px">
-                                <button type="submit" class="btn btn-info btn-lg" style="align-self: right" title="Subscribe" ng-click="vm.subscribe()" ng-if="vm.isNotSubscribed"><i class="fa fa-hand-o-up"></i></button>
-                                <button type="submit" class="btn btn-secondary btn-lg" style="align-self: right" title="Subscribe" ng-click="vm.unSubscribe()" ng-if="vm.isSubscribed"><i class="fa fa-hand-o-up"></i></button> {{vm.usernameToShow}}
+                                <button type="submit" class="btn  btn-lg" style="align-self: right" title="Subscribe" ng-click="vm.subscribe()"
+                                ng-class="{true: 'btn-secondary', false: 'btn-info'}[vm.isSubscribed]">
+                                    <i class="fa fa-hand-o-up"></i></button>
+                                <!-- <button type="submit" class="btn btn-secondary btn-lg" style="align-self: right" title="Subscribe" ng-click="vm.unSubscribe()" ng-if="vm.changeColor"><i class="fa fa-hand-o-up"></i></button> -->
+                                    {{vm.usernameToShow}}
                             </p>
                             <div class="text-center" style="margin-top:1%;">
                                 <img src="{{vm.photoToShow}}" alt="no image" class="img-rounded" style="max-width:100%;max-height: 100%;" />
