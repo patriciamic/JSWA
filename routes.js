@@ -18,6 +18,7 @@ module.exports = {
     postNewSubscriber,
     postDeleteUser,
     getAllSubribers,
+    getAllFollowers,
     test
 }
 
@@ -53,6 +54,13 @@ async function getAllSubribers(ctx) {
 
 }
 
+async function getAllFollowers(ctx) {
+    let mdata = ctx.request.body;
+    console.log(mdata.idUserTo);
+    let res = await pool.executeQuery(`select users.username, subscribers.idUserFrom from subscribers join users on users.id = subscribers.idUserTo where subscribers.idUserTo = "${mdata.idUserTo}"`);
+    ctx.body = res;
+}
+
 
 async function getUsers(ctx) {
     ctx.body = await pool.executeQuery(`Select username from Users`);
@@ -75,7 +83,7 @@ async function getLatestPhoto(ctx) {
 
 async function getAllPosts(ctx) {
     let mdata = ctx.request.body;
-    let res = await pool.executeQuery("select username, idUser, photo, description, code from posts join users on posts.idUser= users.id where idUser!=" + mdata.idUser + " order by posts.id desc");
+    let res = await pool.executeQuery("select username, idUser, photo, description, timeOfPost, code from posts join users on posts.idUser= users.id where idUser!=" + mdata.idUser + " order by posts.timeOfPost desc");
     let resStringfy = JSON.stringify(res);
     console.log(resStringfy);
     ctx.body = { message: `${resStringfy}` };
@@ -87,7 +95,7 @@ async function postNewUser(ctx) {
     let mdataPasswordString = JSON.stringify(mdata.username);
     console.log(mdataUsernameString.length);
     if (mdataUsernameString.length < 4 || mdataPasswordString.length < 4) {
-        console.log("intra aici");
+        console.log("intra cici");
         ctx.body = { message: `wrong` };
     } else {
         let res = await pool.executeQuery(`INSERT INTO Users (username, password) VALUES ("${mdata.username}", "${mdata.password}")`);
@@ -103,7 +111,7 @@ async function postLogin(ctx) {
 
     var message = {
         notification: {
-            title: 'Te-ai logat',
+            title: 'You are logged in as',
             body: `${mdata.username}`
         },
         token: 'fJYBZXxXQkc:APA91bFnsqWL6aeKvBo-2zGfcQP3yWV1GNV3w6fYT3x-FoD02wmmgMVremdeLDseWve293WOkrsDZbleiNoJ9Dd8lK-g-BQWYy7T6z9iuHH_8TT31Pir87CyO2ogJ4i8rqT7Y7UXGRNk'

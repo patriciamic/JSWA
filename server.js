@@ -28,6 +28,8 @@ router.post('/deleteSubscriber', routes.postDeleteUser);
 
 router.post('/allSubsribers', routes.getAllSubribers);
 
+router.post('/allFollowers', routes.getAllFollowers);
+
 router.get('/test', routes.test);
 
 app

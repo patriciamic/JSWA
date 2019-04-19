@@ -24,7 +24,16 @@
                     vm.posts.forEach(element => {
                         let photo = element.photo;
                         element.photo = "http://localhost:3000/" + photo + ".jpg ";
+                        let timeDate = element.timeOfPost.substr(0, 10);
+                        let year = timeDate.substr(0, 4);
+                        let month = timeDate.substr(5, 2);
+                        let day = timeDate.substr(8, 2);
+
+                        let timeHour = element.timeOfPost.substr(11, 5);
+                        element.timeOfPost = day + "/" + month + "/" + year + " - " + timeHour;
                         officialPosts.push(element);
+
+                        console.log(element.timeOfPost);
                     });
                 })
                 .catch(err => console.error(err));
@@ -95,12 +104,12 @@
                 vm.filteredsearch.forEach(el => {
                     if (el) {
                         vm.posts.push(el);
-                    } else {
-                        console.log("nothing found");
-                        vm.isNotFound = true;
                     }
                 })
-
+                if (vm.posts.length < 1) {
+                    console.log("nothing found");
+                    vm.isNotFound = true;
+                }
 
             }
         }

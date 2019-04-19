@@ -40,6 +40,21 @@
 
 
 
+        vm.noOfFollowers = 0;
+        getAllFollowers = function() {
+            $http.post('/allFollowers', { idUserTo: localStorage.getItem("idUser") })
+                .then(res => {
+                    // vm.allSubsribers = res.data;
+                    console.log(res.data.length);
+                    vm.noOfFollowers = res.data.length;
+                })
+                .catch(err => console.error(err));
+        }
+
+        getAllFollowers();
+
+
+
 
         vm.displayModal = false;
 
