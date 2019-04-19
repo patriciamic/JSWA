@@ -3,6 +3,10 @@ const uuid = require('uuid/v1');
 var fs = require("fs");
 const pool = require('./db');
 
+var fcm = require('fcm-notification');
+var FCM = new fcm('fcm.json');
+
+
 module.exports = {
     getTest,
     postLogin,
@@ -13,7 +17,8 @@ module.exports = {
     getAllPosts,
     postNewSubscriber,
     postDeleteUser,
-    getAllSubribers
+    getAllSubribers,
+    test
 }
 
 
@@ -95,12 +100,44 @@ async function postLogin(ctx) {
     let mdata = ctx.request.body;
     let res = await pool.executeQuery(`select id, username from Users where username="${mdata.username}" and password = "${mdata.password}"`);
     let resStringfy = JSON.stringify(res);
+
+    var message = {
+        notification: {
+            title: 'Te-ai logat',
+            body: `${mdata.username}`
+        },
+        token: 'fJYBZXxXQkc:APA91bFnsqWL6aeKvBo-2zGfcQP3yWV1GNV3w6fYT3x-FoD02wmmgMVremdeLDseWve293WOkrsDZbleiNoJ9Dd8lK-g-BQWYy7T6z9iuHH_8TT31Pir87CyO2ogJ4i8rqT7Y7UXGRNk'
+    };
+
+    FCM.send(message, (err, res) => {
+        if (err) console.log(err);
+        console.log(res);
+        ctx.body = res;
+    });
+
     ctx.body = { message: `${resStringfy}` };
+
     // ctx.body = { message: `${JSON.stringify(mdata.username)}` };
 }
 
 async function postPhoto(ctx) {
     ctx.body = await writeImage(ctx.request.body.idUser, ctx.request.body.image.substring(1, ctx.request.body.image.length - 1), ctx.request.body.description, ctx.request.body.code);
+}
+
+async function test(ctx) {
+    var message = {
+        notification: {
+            title: 'Title of notification',
+            body: 'Body of notification'
+        },
+        token: 'fJYBZXxXQkc:APA91bFnsqWL6aeKvBo-2zGfcQP3yWV1GNV3w6fYT3x-FoD02wmmgMVremdeLDseWve293WOkrsDZbleiNoJ9Dd8lK-g-BQWYy7T6z9iuHH_8TT31Pir87CyO2ogJ4i8rqT7Y7UXGRNk'
+    };
+
+    FCM.send(message, (err, res) => {
+        if (err) console.log(err);
+        console.log(res);
+        ctx.body = res;
+    })
 }
 
 function writeImage(idUser, image, description, code) {
