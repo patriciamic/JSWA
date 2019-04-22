@@ -13,7 +13,7 @@
 
 
         vm.getData = () => {
-            $http.post('/getLatesPhoto', { idUser: localStorage.getItem("idUser") })
+            $http.post('/getAllPostsById', { idUser: localStorage.getItem("idUser") })
                 .then(res => {
                     vm.posts = JSON.parse(res.data.message);
                     vm.posts.forEach(element => {

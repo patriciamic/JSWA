@@ -77,7 +77,9 @@
                             <!-- <p style="font-size: 30px">Subscribers:</p> -->
                             <table>
                                 <tr ng-repeat="item in vm.allSubsribers">
-                                    <td>{{item.username}}</td>
+                                    <td>
+                                        <a href="" title="go to profile" style="color:white" ng-click="vm.showFollowingProfile(item)"> <i class="fa fa-user-circle" style="margin-right: 10px"></i> {{item.username}}</a>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
@@ -128,12 +130,10 @@
             <div style="clear:both; font-size:1px;"></div>
         </div>
 
+        <!-- modal for display profile -->
 
-
-
-
-        <div id="loading" class="modal" ng-if="vm.displayModal">
-            <div class="modal-content" style="width: 600px;">
+        <div id="loading" class="modal" ng-if="vm.displayModalProfile ">
+            <div class="modal-content" style="width: 1000px;">
                 <div style="color: #000">
 
                     <div class="card mb-3 " style=" margin-top:3%;">
@@ -142,17 +142,12 @@
 
                             <p class="lead" style="margin-top: 1%; margin-right: 1%" align="right">
 
-                                <button type="submit" class="btn btn-info btn-lg" style="align-self: right" title="Copy code" ngclipboard data-clipboard-text="{{vm.copyToClipboard}}" ng-click="vm.copy()"><i class="fa fa-copy"></i></button>
-                                <button type="submit" class="btn btn-danger btn-lg" style="align-self: right" title="Close" ng-click="vm.close()"><i class="fa fa-window-close"></i></button>
+                                <button type="submit" class="btn btn-danger btn-lg" style="align-self: right" title="Close" ng-click="vm.closeProfile()"><i class="fa fa-window-close"></i></button>
 
                             </p>
 
+
                             <p type="text" style="color: white; text-align: center; font-size: 30px">
-                                <!-- <button type="submit" class="btn  btn-lg" style="align-self: right" title="Subscribe" ng-click="vm.subscribe()" ng-class="{true: 'btn-secondary', false: 'btn-info'}[vm.isSubscribed]">
-                                    <i class="fa fa-hand-o-up"></i></button> -->
-
-
-
                                 {{vm.usernameToShow}}
                             </p>
                             <p align="center">
@@ -160,57 +155,110 @@
                                 <button type="submit" class="btn btn-info btn-lg" style="align-self: right" title="Subscribe" ng-click="vm.subscribe()" ng-if="vm.isNotSubribed"><i class="fa fa-hand-o-up" style="margin-right: 5px"></i>Subscribe</button>
                             </p>
 
-                            <div class="text-center" style="margin-top:1%;">
-                                <img src="{{vm.photoToShow}}" alt="no image" class="img-rounded" style="max-width:100%;max-height: 100%;" />
-                            </div>
-                            <div class="card-text text-center " style="margin:2%; color:whitesmoke; font-size: 25px">
-                                {{vm.descriptionToShow}}</div>
-                            <p style="color:white; font-size: 30px; text-align: center; margin-top:10%"><strong>Here is the
-                                code</strong></p>
-                            <textarea readonly id="form7" class="md-textarea form-control" style="height: 100%px; min-height: 300px ;">{{vm.codeToShow}}</textarea>
 
+
+
+                            <div style="margin-top:10%" ng-repeat="item in vm.postsForFollowingProfile">
+                                <div class="text-center" style="margin-top:1%; height: 270px">
+                                    <img src="{{item.photo}}" alt="asta e poza" class="img-rounded" style="
+                                                   max-width:100%;
+                                                    max-height:70%;
+                                                  
+                                                    object-fit: contain" />
+                                    <p align="center" style="font-size: 15px; margin-top:10px; color: white">
+                                        {{item.timeOfPost}}</p>
+
+                                    <div class="card-text text-center " style="margin:2%; color:whitesmoke; font-size: 25px ">
+                                        {{item.description}}</div>
+                                </div>
+
+
+
+                            </div>
                         </div>
                     </div>
 
                 </div>
-                <!-- </div> -->
 
             </div>
 
 
 
         </div>
+
+
+
+        <div id=" loading " class="modal " ng-if="vm.displayModal ">
+            <div class="modal-content " style="width: 600px; ">
+                <div style="color: #000 ">
+
+                    <div class="card mb-3 " style=" margin-top:3%; ">
+
+                        <div class="card-body ">
+
+                            <p class="lead " style="margin-top: 1%; margin-right: 1% " align="right ">
+
+                                <button type="submit " class="btn btn-info btn-lg " style="align-self: right " title="Copy code " ngclipboard data-clipboard-text="{{vm.copyToClipboard}} " ng-click="vm.copy() "><i class="fa fa-copy "></i></button>
+                                <button type="submit " class="btn btn-danger btn-lg " style="align-self: right " title="Close " ng-click="vm.close() "><i class="fa fa-window-close "></i></button>
+
+                            </p>
+
+                            <p type="text " style="color: white; text-align: center; font-size: 30px ">
+                                {{vm.usernameToShow}}
+                            </p>
+                            <p align="center ">
+                                <button type="submit " class="btn btn-secondary btn-lg " style="align-self: right " title="Subscribe " ng-click="vm.subscribe() " ng-if="vm.isSubscribed "><i class="fa fa-hand-o-up " style="margin-right: 5px "></i>Subscribed</button>
+                                <button type="submit " class="btn btn-info btn-lg " style="align-self: right " title="Subscribe " ng-click="vm.subscribe() " ng-if="vm.isNotSubribed "><i class="fa fa-hand-o-up " style="margin-right: 5px "></i>Subscribe</button>
+                            </p>
+
+                            <div class="text-center " style="margin-top:1%; ">
+                                <img src="{{vm.photoToShow}} " alt="no image " class="img-rounded " style="max-width:100%;max-height: 100%; " />
+                            </div>
+                            <div class="card-text text-center " style="margin:2%; color:whitesmoke; font-size: 25px ">
+                                {{vm.descriptionToShow}}</div>
+                            <p style="color:white; font-size: 30px; text-align: center; margin-top:10% "><strong>Here is the
+                                code</strong></p>
+                            <textarea readonly id="form7 " class="md-textarea form-control " style="height: 100%px; min-height: 300px ; ">{{vm.codeToShow}}</textarea>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
     </div>
 
 
-</div>
-
-
-<style>
-    .modal {
-        display: block;
-        position: fixed;
-        z-index: 10000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgb(0, 0, 0);
-        background-color: rgba(0, 0, 0, 0.4);
-    }
-    
-    .modal-content {
-        background-color: "secondary";
-        margin: 3% auto;
-        padding: 20px;
-        border: 1px "secondary";
-        width: 15%;
-    }
-    
-    .polaroid {
-        /* width: 250px; */
-        box-shadow: 0 4px 8px 0 rgba(48, 48, 48, 0.2), 0 6px 20px 0 rgba(1, 0, 0, 0.19);
-        text-align: center;
-    }
-</style>
+    <style>
+        .modal {
+            display: block;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        
+        .modal-content {
+            background-color: "secondary ";
+            margin: 3% auto;
+            padding: 20px;
+            border: 1px "secondary ";
+            width: 15%;
+        }
+        
+        .polaroid {
+            /* width: 250px; */
+            box-shadow: 0 4px 8px 0 rgba(48, 48, 48, 0.2), 0 6px 20px 0 rgba(1, 0, 0, 0.19);
+            text-align: center;
+        }
+    </style>
