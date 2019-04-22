@@ -71,7 +71,7 @@ async function getLatestPhoto(ctx) {
     let mdata = ctx.request.body;
     console.log("body " + ctx.request.body.idUser);
     console.log(mdata.idUser);
-    let res = await pool.executeQuery("select idUser, photo, description, code from posts where idUser=" + mdata.idUser);
+    let res = await pool.executeQuery("select idUser, photo, description, code, timeOfPost from posts where idUser=" + mdata.idUser);
     let resStringfy = JSON.stringify(res);
     console.log(resStringfy);
     ctx.body = { message: `${resStringfy}` };

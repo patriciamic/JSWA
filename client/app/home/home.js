@@ -7,6 +7,7 @@
         vm.allSubsribers = [];
         vm.isSubscribed = false;
         vm.displayModal = false;
+        vm.displayModalProfile = false;
 
 
         let officialPosts = [];
@@ -24,16 +25,8 @@
                     vm.posts.forEach(element => {
                         let photo = element.photo;
                         element.photo = "http://localhost:3000/" + photo + ".jpg ";
-                        let timeDate = element.timeOfPost.substr(0, 10);
-                        let year = timeDate.substr(0, 4);
-                        let month = timeDate.substr(5, 2);
-                        let day = timeDate.substr(8, 2);
-
-                        let timeHour = element.timeOfPost.substr(11, 5);
-                        element.timeOfPost = day + "/" + month + "/" + year + " - " + timeHour;
+                        element.timeOfPost = getDateFormat(element);
                         officialPosts.push(element);
-
-                        console.log(element.timeOfPost);
                     });
                 })
                 .catch(err => console.error(err));
@@ -41,9 +34,19 @@
 
         vm.getPhotos();
 
-        vm.close = () => {
-            vm.displayModal = false;
+
+        function getDateFormat(elem) {
+            let timeDate = elem.timeOfPost.substr(0, 10);
+            let year = timeDate.substr(0, 4);
+            let month = timeDate.substr(5, 2);
+            let day = timeDate.substr(8, 2);
+            let timeHour = elem.timeOfPost.substr(11, 5);
+            return day + "/" + month + "/" + year + " - " + timeHour;
         }
+
+        vm.close = () => vm.displayModal = false;
+
+
 
         vm.copy = () => {
             console.log(vm.copyToClipboard);
@@ -146,6 +149,32 @@
                 vm.isNotSubribed = true;
             }
         }
+
+        vm.postsForFollowingProfile = [];
+
+        vm.getDataForFollowingProfile = function(idUserFollowingProfile) {
+            $http.post('/getAllPostsById', { idUser: idUserFollowingProfile })
+                .then(res => {
+                    vm.postsForFollowingProfile = JSON.parse(res.data.message);
+                    vm.postsForFollowingProfile.forEach(element => {
+                        let photo = element.photo;
+                        element.photo = "http://localhost:3000/" + photo + ".jpg ";
+                        element.timeOfPost = getDateFormat(element);
+                    });
+
+                    console.log(vm.postsForFollowingProfile);
+                })
+                .catch(err => console.error(err));
+        }
+
+        vm.showFollowingProfile = function(item) {
+            vm.getDataForFollowingProfile(item.idUserTo);
+            vm.usernameToShow = item.username;
+            vm.displayModalProfile = true;
+        }
+
+        vm.closeProfile = () => vm.displayModalProfile = false;
+
 
     })
 })()
