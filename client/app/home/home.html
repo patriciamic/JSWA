@@ -133,10 +133,10 @@
         <!-- modal for display profile -->
 
         <div id="loading" class="modal" ng-if="vm.displayModalProfile ">
-            <div class="modal-content" style="width: 1000px;">
+            <div class="modal-left" style="width: 900px;">
                 <div style="color: #000">
 
-                    <div class="card mb-3 " style=" margin-top:3%;">
+                    <div class="card mb-3 " style=" margin-top:3%; background-color: rgb(250,250,250)">
 
                         <div class="card-body">
 
@@ -147,7 +147,7 @@
                             </p>
 
 
-                            <p type="text" style="color: white; text-align: center; font-size: 30px">
+                            <p type="text" style=" text-align: center; font-size: 30px">
                                 {{vm.usernameToShow}}
                             </p>
                             <p align="center">
@@ -165,10 +165,10 @@
                                                     max-height:70%;
                                                   
                                                     object-fit: contain" />
-                                    <p align="center" style="font-size: 15px; margin-top:10px; color: white">
+                                    <p align="center" style="font-size: 15px; margin-top:10px; ">
                                         {{item.timeOfPost}}</p>
 
-                                    <div class="card-text text-center " style="margin:2%; color:whitesmoke; font-size: 25px ">
+                                    <div class="card-text text-center " style="margin:2%;  font-size: 25px ">
                                         {{item.description}}</div>
                                 </div>
 
@@ -256,9 +256,12 @@
             width: 15%;
         }
         
-        .polaroid {
-            /* width: 250px; */
-            box-shadow: 0 4px 8px 0 rgba(48, 48, 48, 0.2), 0 6px 20px 0 rgba(1, 0, 0, 0.19);
-            text-align: center;
+        .modal-left {
+            background-color: "secondary";
+            /* margin-top: auto; */
+            margin-left: 63%;
+            /* padding: 5px; */
+            border: 5px "secondary ";
+            width: 20%;
         }
     </style>

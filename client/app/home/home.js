@@ -171,7 +171,6 @@
             vm.getDataForFollowingProfile(item.idUserTo);
             vm.usernameToShow = item.username;
             vm.displayModalProfile = true;
-            console.log(vm.displayModal);
         }
 
         vm.closeProfile = () => vm.displayModalProfile = false;
