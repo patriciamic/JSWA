@@ -7,7 +7,7 @@
 
         vm.login = () => {
 
-            $http.post('/auth', { username: vm.username, password: vm.password })
+            $http.post('/auth', { username: vm.username, password: vm.password, token: localStorage.getItem("tokenFCM") })
                 .then(res => {
                     console.log(JSON.parse(res.data.message)[0].username);
 

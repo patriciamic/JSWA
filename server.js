@@ -1,3 +1,8 @@
+"use strict";
+
+var requireHttps = require('https');
+
+
 const Koa = require('koa');
 const body = require('koa-bodyparser');
 const router = require('koa-router')();
@@ -9,6 +14,8 @@ const port = process.env.PORT || 3000;
 const routes = require('./routes');
 
 const app = new Koa();
+
+
 
 router.get('/getUsers', routes.getUsers);
 

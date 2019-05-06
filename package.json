@@ -21,6 +21,7 @@
         "fcm-notification": "^2.0.0",
         "font-awesome": "^4.7.0",
         "fs": "0.0.1-security",
+        "https": "^1.0.0",
         "koa": "^2.7.0",
         "koa-bodyparser": "^4.2.1",
         "koa-graphiql": "^1.1.0",
@@ -30,6 +31,7 @@
         "mysql": "^2.16.0",
         "ngclipboard": "^2.0.0",
         "ngstorage": "^0.3.11",
+        "pg": "^7.10.0",
         "ui-bootstrap": "^0.1.11",
         "uuid": "^3.3.2"
     }

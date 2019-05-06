@@ -6,6 +6,8 @@ const pool = require('./db');
 var fcm = require('fcm-notification');
 var FCM = new fcm('fcm.json');
 
+const db = require('./database/database');
+const queries = require('./database/query');
 
 module.exports = {
     getTest,
@@ -98,7 +100,8 @@ async function postNewUser(ctx) {
         console.log("intra cici");
         ctx.body = { message: `wrong` };
     } else {
-        let res = await pool.executeQuery(`INSERT INTO Users (username, password) VALUES ("${mdata.username}", "${mdata.password}")`);
+        //let res = await pool.executeQuery(`INSERT INTO Users (username, password) VALUES ("${mdata.username}", "${mdata.password}")`);
+        let res = await db.executeQuery(queries.register(mdata.username, mdata.password));
         ctx.body = { message: `${mdata.username}` };
     }
 
@@ -106,7 +109,9 @@ async function postNewUser(ctx) {
 
 async function postLogin(ctx) {
     let mdata = ctx.request.body;
-    let res = await pool.executeQuery(`select id, username from Users where username="${mdata.username}" and password = "${mdata.password}"`);
+    let res = await db.executeQuery(queries.login(mdata.username, mdata.password));
+    console.log(res);
+    //let res = await pool.executeQuery(`select id, username from Users where username="${mdata.username}" and password = "${mdata.password}"`);
     let resStringfy = JSON.stringify(res);
 
     var message = {
@@ -114,7 +119,8 @@ async function postLogin(ctx) {
             title: 'You are logged in as',
             body: `${mdata.username}`
         },
-        token: 'fJYBZXxXQkc:APA91bFnsqWL6aeKvBo-2zGfcQP3yWV1GNV3w6fYT3x-FoD02wmmgMVremdeLDseWve293WOkrsDZbleiNoJ9Dd8lK-g-BQWYy7T6z9iuHH_8TT31Pir87CyO2ogJ4i8rqT7Y7UXGRNk'
+        // token: 'fJYBZXxXQkc:APA91bFnsqWL6aeKvBo-2zGfcQP3yWV1GNV3w6fYT3x-FoD02wmmgMVremdeLDseWve293WOkrsDZbleiNoJ9Dd8lK-g-BQWYy7T6z9iuHH_8TT31Pir87CyO2ogJ4i8rqT7Y7UXGRNk'
+        token: mdata.token
     };
 
     FCM.send(message, (err, res) => {
