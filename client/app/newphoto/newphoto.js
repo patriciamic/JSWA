@@ -14,7 +14,11 @@
 
                     console.log("clicked dada");
 
-                    $http.post('/addNewPost', { idUser: localStorage.getItem("idUser"), image: localStorage.getItem("ng-drop-image-image"), description: vm.description, code: ` ` + vm.code + ` ` })
+                    $http.post('/addNewPost', { idUser: localStorage.getItem("idUser"), 
+                                                image: localStorage.getItem("ng-drop-image-image"), 
+                                                description: vm.description, 
+                                                code: ` ` + vm.code + ` `,
+                                                token: localStorage.getItem("token") })
                         .then(res => {
                             console.log("data sent");
                             localStorage.setItem("ng-drop-image-image", "");

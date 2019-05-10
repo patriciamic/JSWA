@@ -12,7 +12,7 @@ module.exports = {
                 client.query(query.text, query.values, (err, result) => {
                     release();
                     if (err) {
-                        rej(err['hint']);
+                        rej(err);
                     }
                     if (result && result.rows) {
                         res(result.rows);

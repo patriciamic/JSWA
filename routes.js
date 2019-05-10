@@ -6,8 +6,8 @@ const pool = require('./db');
 var fcm = require('fcm-notification');
 var FCM = new fcm('fcm.json');
 
-const db = require('./database/database');
-const queries = require('./database/query');
+// const db = require('./database/database');
+// const queries = require('./database/query');
 
 module.exports = {
     getTest,
@@ -15,10 +15,10 @@ module.exports = {
     postNewUser,
     getUsers,
     postPhoto,
-    getLatestPhoto,
+    getAllPostsOfUser,
     getAllPosts,
     postNewSubscriber,
-    postDeleteUser,
+    postDeleteSubscriber,
     getAllSubribers,
     getAllFollowers,
     test
@@ -34,15 +34,16 @@ function getTest(ctx) {
 
 async function postNewSubscriber(ctx) {
     let mdata = ctx.request.body;
-    //let res = await pool.executeQuery(`INSERT INTO subscribers (idUserFrom, idUserTo) VALUES ("${mdata.idUserFrom}", "${mdata.idUserTo}")`);
-    let res = await pool.executeQuery(`call InsertSubs(${mdata.idUserFrom}, ${mdata.idUserTo})`);
+    let res = await pool.executeQuery(`call InsertSubs(${mdata.idUserFrom}, ${mdata.idUserTo})`); //mysql
+    // let res = await db.executeQuery(queries.callInsertSubs(mdata.idUserFrom, mdata.idUserTo)); //postgres pg Admin
     console.log(res[0]);
     ctx.body = res[0];
 }
 
-async function postDeleteUser(ctx) {
+async function postDeleteSubscriber(ctx) {
     let mdata = ctx.request.body;
-    let res = await pool.executeQuery(`call DeleteSubs(${mdata.idUserFrom}, ${mdata.idUserTo})`);
+    let res = await pool.executeQuery(`call DeleteSubs(${mdata.idUserFrom}, ${mdata.idUserTo})`); //mysql
+    // let res = await db.executeQuery(queries.callDeleteSubs(mdata.idUserFrom, mdata.idUserTo)); //postgres pg Admin
     ctx.body = res[0];
 }
 
@@ -50,30 +51,32 @@ async function getAllSubribers(ctx) {
     let mdata = ctx.request.body;
     console.log(mdata.idUserFrom);
     let res = await pool.executeQuery(`select users.username, subscribers.idUserTo from subscribers join users on users.id = subscribers.idUserTo where subscribers.idUserFrom = "${mdata.idUserFrom}"`);
+    //let res = await db.executeQuery(queries.allSubscribers(mdata.idUserFrom)) //pg admin
     ctx.body = res;
-
     // ctx.body = { message: JSON.stringify(res) };
-
 }
 
 async function getAllFollowers(ctx) {
     let mdata = ctx.request.body;
     console.log(mdata.idUserTo);
     let res = await pool.executeQuery(`select users.username, subscribers.idUserFrom from subscribers join users on users.id = subscribers.idUserTo where subscribers.idUserTo = "${mdata.idUserTo}"`);
+  //  let res = await db.executeQuery(queries.allFollowers(mdata.idUserTo)); //pgadmin
     ctx.body = res;
 }
 
 
 async function getUsers(ctx) {
     ctx.body = await pool.executeQuery(`Select username from Users`);
+    // ctx.body = await db.executeQuery(queries.users()); //pgadmin
     console.log(ctx.body);
 }
 
-async function getLatestPhoto(ctx) {
+async function getAllPostsOfUser(ctx) {
     let mdata = ctx.request.body;
     console.log("body " + ctx.request.body.idUser);
     console.log(mdata.idUser);
     let res = await pool.executeQuery("select idUser, photo, description, code, timeOfPost from posts where idUser=" + mdata.idUser);
+    // let res = await db.executeQuery(queries.allPostsOfUser(mdata.idUser)) //pgadmin
     let resStringfy = JSON.stringify(res);
     console.log(resStringfy);
     ctx.body = { message: `${resStringfy}` };
@@ -84,11 +87,18 @@ async function getLatestPhoto(ctx) {
 
 
 async function getAllPosts(ctx) {
-    let mdata = ctx.request.body;
-    let res = await pool.executeQuery("select username, idUser, photo, description, timeOfPost, code from posts join users on posts.idUser= users.id where idUser!=" + mdata.idUser + " order by posts.timeOfPost desc");
-    let resStringfy = JSON.stringify(res);
-    console.log(resStringfy);
-    ctx.body = { message: `${resStringfy}` };
+    try {
+        let mdata = ctx.request.body;
+        let res = await pool.executeQuery("select username, idUser, photo, description, timeOfPost, code from posts join users on posts.idUser= users.id where idUser!=" + mdata.idUser + " order by posts.timeOfPost desc");
+        // let res = await db.executeQuery(queries.allPostsNotUser(mdata.idUser)); //pgadmin
+        console.log('res: ', res);
+        let resStringfy = JSON.stringify(res);
+        console.log(resStringfy);
+        ctx.body = { message: `${resStringfy}` };
+    } catch (e) {
+        console.log('aici:', e);
+        ctx.body = e;
+    }
 }
 
 async function postNewUser(ctx) {
@@ -100,8 +110,8 @@ async function postNewUser(ctx) {
         console.log("intra cici");
         ctx.body = { message: `wrong` };
     } else {
-        //let res = await pool.executeQuery(`INSERT INTO Users (username, password) VALUES ("${mdata.username}", "${mdata.password}")`);
-        let res = await db.executeQuery(queries.register(mdata.username, mdata.password));
+        let res = await pool.executeQuery(`INSERT INTO Users (username, password) VALUES ("${mdata.username}", "${mdata.password}")`);
+        // let res = await db.executeQuery(queries.register(mdata.username, mdata.password)); //pgadmin
         ctx.body = { message: `${mdata.username}` };
     }
 
@@ -109,9 +119,9 @@ async function postNewUser(ctx) {
 
 async function postLogin(ctx) {
     let mdata = ctx.request.body;
-    let res = await db.executeQuery(queries.login(mdata.username, mdata.password));
-    console.log(res);
-    //let res = await pool.executeQuery(`select id, username from Users where username="${mdata.username}" and password = "${mdata.password}"`);
+    // let res = await db.executeQuery(queries.login(mdata.username, mdata.password, mdata.token)); //pgadmin
+    // console.log(res);
+    let res = await pool.executeQuery(`select id, username from Users where username="${mdata.username}" and password = "${mdata.password}"`);
     let resStringfy = JSON.stringify(res);
 
     var message = {
@@ -135,7 +145,25 @@ async function postLogin(ctx) {
 }
 
 async function postPhoto(ctx) {
-    ctx.body = await writeImage(ctx.request.body.idUser, ctx.request.body.image.substring(1, ctx.request.body.image.length - 1), ctx.request.body.description, ctx.request.body.code);
+
+
+    let res = await writeImage(ctx.request.body.idUser, ctx.request.body.image.substring(1, ctx.request.body.image.length - 1), ctx.request.body.description, ctx.request.body.code);
+
+    var message = {
+        notification: {
+            title: 'Success!',
+            body: 'You added a new photo.'
+        },
+        // token: 'fJYBZXxXQkc:APA91bFnsqWL6aeKvBo-2zGfcQP3yWV1GNV3w6fYT3x-FoD02wmmgMVremdeLDseWve293WOkrsDZbleiNoJ9Dd8lK-g-BQWYy7T6z9iuHH_8TT31Pir87CyO2ogJ4i8rqT7Y7UXGRNk'
+        token: ctx.request.body.token
+    };
+
+    FCM.send(message, (err, res) => {
+        if (err) console.log(err);
+        console.log(res);
+        ctx.body = res;
+    });
+    ctx.body = res;
 }
 
 async function test(ctx) {
@@ -168,6 +196,7 @@ function writeImage(idUser, image, description, code) {
         });
         console.log("aici 2");
         let result = await pool.executeQuery(`INSERT INTO posts (description, photo, idUser, code) VALUES ("${description}", "${path}", "${idUser}", "${code}")`);
+        // let result = await db.executeQuery(queries.insertNewPost(description, path, idUser, code))  //pgadmin
 
 
     })

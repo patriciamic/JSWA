@@ -13,12 +13,15 @@
 
 
         vm.getData = () => {
-            $http.post('/getAllPostsById', { idUser: localStorage.getItem("idUser") })
+            $http.post('/allPostsById', { idUser: localStorage.getItem("idUser") })
                 .then(res => {
                     vm.posts = JSON.parse(res.data.message);
                     vm.posts.forEach(element => {
                         let photo = element.photo;
+                        // element.photo = "https://jswa-templates.herokuapp.com/" + photo + ".jpg "; //heroku
                         element.photo = "http://localhost:3000/" + photo + ".jpg ";
+                        
+                        console.log(element.photo);
                     });
                 })
                 .catch(err => console.error(err));

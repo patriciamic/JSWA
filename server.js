@@ -1,8 +1,3 @@
-"use strict";
-
-var requireHttps = require('https');
-
-
 const Koa = require('koa');
 const body = require('koa-bodyparser');
 const router = require('koa-router')();
@@ -15,13 +10,11 @@ const routes = require('./routes');
 
 const app = new Koa();
 
-
-
 router.get('/getUsers', routes.getUsers);
 
-router.post('/getAllPostsById', routes.getLatestPhoto);
+router.post('/allPostsById', routes.getAllPostsOfUser);
 
-router.post('/getAllPosts', routes.getAllPosts);
+router.post('/allPosts', routes.getAllPosts);
 
 router.post('/auth', routes.postLogin);
 
@@ -31,7 +24,7 @@ router.post('/addNewPost', routes.postPhoto);
 
 router.post('/addNewSubscriber', routes.postNewSubscriber);
 
-router.post('/deleteSubscriber', routes.postDeleteUser);
+router.post('/deleteSubscriber', routes.postDeleteSubscriber);
 
 router.post('/allSubsribers', routes.getAllSubribers);
 

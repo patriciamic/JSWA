@@ -1,3 +1,5 @@
+// Initialize Firebase
+
 var config = {
     apiKey: "AIzaSyDMYpInrRV-1YRW6NsZu-GF_XX-R5fwZB8",
     authDomain: "jstemplates-91358.firebaseapp.com",
@@ -16,8 +18,8 @@ messaging.usePublicVapidKey('BAp7u4PzjypiDrdRUU2JX4nCWImGV66jKQKnzC1_MkdtH5oYcCA
 messaging.requestPermission()
     .then(() => messaging.getToken())
     .then(tokenS => {
-        token = tokenS;
-        localStorage.setItem("tokenFCM", token);
+        token = tokenS
+        localStorage.setItem("token", token)
     })
     .catch(err => console.log('Err :', err));
 

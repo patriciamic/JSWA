@@ -19,14 +19,22 @@
         vm.showUsername();
 
         vm.getPhotos = () => {
-            $http.post('/getAllPosts', { idUser: localStorage.getItem("idUser") })
+            console.log("get all posts");
+            $http.post('/allPosts', { idUser: localStorage.getItem("idUser") })
                 .then(res => {
+
                     vm.posts = JSON.parse(res.data.message);
+
+                    console.log(vm.posts);
                     vm.posts.forEach(element => {
                         let photo = element.photo;
-                        element.photo = "http://localhost:3000/" + photo + ".jpg ";
                         element.timeOfPost = getDateFormat(element);
+                        console.log(element.timeOfPost);
+                        // element.photo = "https://jswa-templates.herokuapp.com/" + photo + ".jpg "; //heroku
+                        element.photo = "http://localhost:3000/" + photo + ".jpg ";
+                       
                         officialPosts.push(element);
+
                     });
                 })
                 .catch(err => console.error(err));
@@ -153,7 +161,7 @@
         vm.postsForFollowingProfile = [];
 
         vm.getDataForFollowingProfile = function(idUserFollowingProfile) {
-            $http.post('/getAllPostsById', { idUser: idUserFollowingProfile })
+            $http.post('/allPostsById', { idUser: idUserFollowingProfile })
                 .then(res => {
                     vm.postsForFollowingProfile = JSON.parse(res.data.message);
                     vm.postsForFollowingProfile.forEach(element => {
@@ -168,9 +176,11 @@
         }
 
         vm.showFollowingProfile = function(item) {
+            console.log(item.idUserTo);
             vm.getDataForFollowingProfile(item.idUserTo);
             vm.usernameToShow = item.username;
             vm.displayModalProfile = true;
+            console.log(vm.postsForFollowingProfile);
         }
 
         vm.closeProfile = () => vm.displayModalProfile = false;

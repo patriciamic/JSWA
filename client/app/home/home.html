@@ -10,8 +10,7 @@
 
             <h1>template<strong>SH<i class="fa fa-mobile" style="margin-right: 5px"></i>W</strong></h1>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
-            aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -46,19 +45,16 @@
             <div style="height: 400px;background-color: rgb(38 ,166,154); margin-left:-10%;">
                 <h1 style="height: 100px;color: rgb(38 ,166,154);">>__</h1>
                 <h3 style="margin-left:18%">Discover the top designers & creatives</h3>
-                <h6 style="margin-left:18%">TemplateSHOW is the leading destination to find & showcase creative work and
-                    home to the world's best design professional.
+                <h6 style="margin-left:18%">TemplateSHOW is the leading destination to find & showcase creative work and home to the world's best design professional.
                 </h6>
                 <h6 style="margin-left:18%">The Heart of the Designer Community.</h6>
-                <h6 style="margin-left:18%">We're on a mission to build the world's best community for creatives to
-                    share and grow.
+                <h6 style="margin-left:18%">We're on a mission to build the world's best community for creatives to share and grow.
                 </h6>
             </div>
 
         </div>
         <div style="float:left;width:20%;">
-            <div> <img style="width:400px; height:400px" src="https://media.giphy.com/media/8VkgrPdxMh0oo/giphy.gif"
-                    alt=""></div>
+            <div> <img style="width:400px; height:400px" src="https://media.giphy.com/media/8VkgrPdxMh0oo/giphy.gif" alt=""></div>
 
         </div>
     </div>
@@ -82,9 +78,7 @@
                             <table>
                                 <tr ng-repeat="item in vm.allSubsribers">
                                     <td>
-                                        <a href="" title="go to profile" style="color:white"
-                                            ng-click="vm.showFollowingProfile(item)"> <i class="fa fa-user-circle"
-                                                style="margin-right: 10px"></i> {{item.username}}</a>
+                                        <a href="" title="go to profile" style="color:white" ng-click="vm.showFollowingProfile(item)"> <i class="fa fa-user-circle" style="margin-right: 10px"></i> {{item.username}}</a>
                                     </td>
                                 </tr>
                             </table>
@@ -99,8 +93,7 @@
         </div>
 
         <div class="col-md-12" style="float:right;width:75%; border:thin">
-            <h1 type="text" ng-model="vm.username" style="margin-top: 2%"><i class="fa fa-search"
-                    style="margin-right: 1%"></i>Explore</h1>
+            <h1 type="text" ng-model="vm.username" style="margin-top: 2%"><i class="fa fa-search" style="margin-right: 1%"></i>Explore</h1>
             <form class="form-inline my-2 my-lg-0 text-center">
                 <input class="form-control col-md-11" type="text" placeholder="Search" ng-model="vm.searchFor">
                 <button class="btn btn-secondary my-2 my-sm-0 " type="submit" ng-click="vm.search()">Search</button>
@@ -108,16 +101,12 @@
             <h3 ng-if="vm.isNotFound" style="margin-top: 2%">Nothing found..</h3>
 
             <div style="margin-top: 2%;" align="center">
-                <div class="card border-light mb-3 "
-                    style="width: 20rem; max-height: 22rem; min-height: 22rem;float:left; margin-right:1%;"
-                    ng-repeat="item in vm.posts">
+                <div class="card border-light mb-3 " style="width: 20rem; max-height: 22rem; min-height: 22rem;float:left; margin-right:1%;" ng-repeat="item in vm.posts">
                     <div class="card-body">
 
                         <p class="lead" align="right">
 
-                            <button title="show info" type="submit" class="btn btn-secondary "
-                                style="align-self: right;" ng-click="vm.showItem(item)"><i
-                                    class="fa fa-info-circle"></i></button>
+                            <button title="show info" type="submit" class="btn btn-secondary " style="align-self: right;" ng-click="vm.showItem(item)"><i class="fa fa-info-circle"></i></button>
                             <div class="card-text text-center " style=" font-size: 20px">{{item.username}}
 
                         </p>
@@ -133,123 +122,96 @@
 
 
 
+                        </div>
                     </div>
                 </div>
+
             </div>
-
+            <div style="clear:both; font-size:1px;"></div>
         </div>
-        <div style="clear:both; font-size:1px;"></div>
-    </div>
 
-    <!-- modal for display profile -->
+        <!-- modal for display profile -->
 
-    <div id="loading" class="modal-profile" ng-if="vm.displayModalProfile ">
-        <div class="modal-left" style="width: 900px;">
-            <div style="color: #000">
-
-                <div class="card mb-3 " style=" margin-top:3%; background-color: rgb(250,250,250)">
-
-                    <div class="card-body" style="height: 100%">
-
+        <div id="loading" class="modal" ng-if="vm.displayModalProfile ">
+            <div class="modal-profile" style="width: 800px; height: 1000px;">
+                <div style="color: #000">
+                    <div class="card mb-3 " style=" margin-top:3%; background-color: rgb(224,242,241)">
                         <p class="lead" style="margin-top: 1%; margin-right: 1%" align="right">
 
-                            <button type="submit" class="btn btn-danger btn-lg" style="align-self: right" title="Close"
-                                ng-click="vm.closeProfile()"><i class="fa fa-window-close"></i></button>
+                            <button type="submit" class="btn btn-danger btn-lg" style="align-self: right" title="Close" ng-click="vm.closeProfile()"><i class="fa fa-window-close"></i></button>
 
                         </p>
-
-
                         <p type="text" style=" text-align: center; font-size: 30px">
                             {{vm.usernameToShow}}
                         </p>
                         <p align="center">
-                            <button type="submit" class="btn btn-secondary btn-lg" style="align-self: right"
-                                title="Subscribe" ng-click="vm.subscribe()" ng-if="vm.isSubscribed"><i
-                                    class="fa fa-hand-o-up" style="margin-right: 5px"></i>Subscribed</button>
-                            <button type="submit" class="btn btn-info btn-lg" style="align-self: right"
-                                title="Subscribe" ng-click="vm.subscribe()" ng-if="vm.isNotSubribed"><i
-                                    class="fa fa-hand-o-up" style="margin-right: 5px"></i>Subscribe</button>
+                            <button type="submit" class="btn btn-secondary btn-lg" style="align-self: right" title="Subscribe" ng-click="vm.subscribe()" ng-if="vm.isSubscribed"><i class="fa fa-hand-o-up" style="margin-right: 5px"></i>Subscribed</button>
+                            <button type="submit" class="btn btn-info btn-lg" style="align-self: right" title="Subscribe" ng-click="vm.subscribe()" ng-if="vm.isNotSubribed"><i class="fa fa-hand-o-up" style="margin-right: 5px"></i>Subscribe</button>
                         </p>
 
-
-
-
-                        <div style="margin-top:10%" ng-repeat="item in vm.postsForFollowingProfile">
-                            <div class="text-center" style="margin-top:1%;">
-                                <img src="{{item.photo}}" alt="asta e poza" class="img-rounded" style="
-                                                   max-width:100%;
-                                                    max-height:70%;
-                                                  
-                                                    object-fit: contain" />
-                                <p align="center" style="font-size: 15px; margin-top:10px; ">
-                                    {{item.timeOfPost}}</p>
-
-                                <div class="card-text text-center " style="margin:2%;  font-size: 25px ">
+                        <div class="card mb-3 " style=" margin-top:1%; background-color: rgb(250,250,250)" ng-repeat="item in vm.postsForFollowingProfile">
+                            <div class="card-body ">
+                                <div class="text-center " style="margin-top:1%; ">
+                                    <img src="{{item.photo}} " alt="no image " class="img-rounded " style="max-width:100%;max-height: 100%; " />
+                                </div>
+                                <div class="card-text text-center " style="margin:2%; font-size: 25px ">
                                     {{item.description}}</div>
+                                <!-- <p style=" font-size: 30px; text-align: center; margin-top:10% "><strong>Here is the
+                                code</strong></p> -->
+                                <p class="lead " style="margin-top: 1%; margin-right: 1% " align="right ">
+                                    <button type="submit " class="btn btn-info btn-lg " style="align-self: right " title="Copy code " ngclipboard data-clipboard-text="{{vm.copyToClipboard}} " ng-click="vm.copy() "><i class="fa fa-copy "></i></button>
+                                </p>
+                                <textarea readonly id="form7 " class="md-textarea form-control " style="height: 100%px; min-height: 300px;">{{item.code}}</textarea>
+
                             </div>
-                            <hr>
-
-
-
                         </div>
+
                     </div>
                 </div>
-
             </div>
-
         </div>
 
 
 
-    </div>
+        <div id=" loading " class="modal " ng-if="vm.displayModal ">
+            <div class="modal-content " style="width: 600px; ">
+                <div style="color: #000 ">
 
+                    <div class="card mb-3 " style=" margin-top:3%; ">
 
+                        <div class="card-body ">
 
-    <div id=" loading " class="modal " ng-if="vm.displayModal ">
-        <div class="modal-content " style="width: 600px; ">
-            <div style="color: #000 ">
+                            <p class="lead " style="margin-top: 1%; margin-right: 1% " align="right ">
 
-                <div class="card mb-3 " style=" margin-top:3%; ">
+                                <button type="submit " class="btn btn-info btn-lg " style="align-self: right " title="Copy code " ngclipboard data-clipboard-text="{{vm.copyToClipboard}} " ng-click="vm.copy() "><i class="fa fa-copy "></i></button>
+                                <button type="submit " class="btn btn-danger btn-lg " style="align-self: right " title="Close " ng-click="vm.close() "><i class="fa fa-window-close "></i></button>
 
-                    <div class="card-body ">
+                            </p>
 
-                        <p class="lead " style="margin-top: 1%; margin-right: 1% " align="right ">
+                            <p type="text " style="color: white; text-align: center; font-size: 30px ">
+                                {{vm.usernameToShow}}
+                            </p>
+                            <p align="center ">
+                                <button type="submit " class="btn btn-secondary btn-lg " style="align-self: right " title="Subscribe " ng-click="vm.subscribe() " ng-if="vm.isSubscribed "><i class="fa fa-hand-o-up " style="margin-right: 5px "></i>Subscribed</button>
+                                <button type="submit " class="btn btn-info btn-lg " style="align-self: right " title="Subscribe " ng-click="vm.subscribe() " ng-if="vm.isNotSubribed "><i class="fa fa-hand-o-up " style="margin-right: 5px "></i>Subscribe</button>
+                            </p>
 
-                            <button type="submit " class="btn btn-info btn-lg " style="align-self: right "
-                                title="Copy code " ngclipboard data-clipboard-text="{{vm.copyToClipboard}} "
-                                ng-click="vm.copy() "><i class="fa fa-copy "></i></button>
-                            <button type="submit " class="btn btn-danger btn-lg " style="align-self: right "
-                                title="Close " ng-click="vm.close() "><i class="fa fa-window-close "></i></button>
-
-                        </p>
-
-                        <p type="text " style="color: white; text-align: center; font-size: 30px ">
-                            {{vm.usernameToShow}}
-                        </p>
-                        <p align="center ">
-                            <button type="submit " class="btn btn-secondary btn-lg " style="align-self: right "
-                                title="Subscribe " ng-click="vm.subscribe() " ng-if="vm.isSubscribed "><i
-                                    class="fa fa-hand-o-up " style="margin-right: 5px "></i>Subscribed</button>
-                            <button type="submit " class="btn btn-info btn-lg " style="align-self: right "
-                                title="Subscribe " ng-click="vm.subscribe() " ng-if="vm.isNotSubribed "><i
-                                    class="fa fa-hand-o-up " style="margin-right: 5px "></i>Subscribe</button>
-                        </p>
-
-                        <div class="text-center " style="margin-top:1%; ">
-                            <img src="{{vm.photoToShow}} " alt="no image " class="img-rounded "
-                                style="max-width:100%;max-height: 100%; " />
-                        </div>
-                        <div class="card-text text-center " style="margin:2%; color:whitesmoke; font-size: 25px ">
-                            {{vm.descriptionToShow}}</div>
-                        <p style="color:white; font-size: 30px; text-align: center; margin-top:10% "><strong>Here is the
+                            <div class="text-center " style="margin-top:1%; ">
+                                <img src="{{vm.photoToShow}} " alt="no image " class="img-rounded " style="max-width:100%;max-height: 100%; " />
+                            </div>
+                            <div class="card-text text-center " style="margin:2%; color:whitesmoke; font-size: 25px ">
+                                {{vm.descriptionToShow}}</div>
+                            <p style="color:white; font-size: 30px; text-align: center; margin-top:10% "><strong>Here is the
                                 code</strong></p>
-                        <textarea readonly id="form7 " class="md-textarea form-control "
-                            style="height: 100%px; min-height: 300px ; ">{{vm.codeToShow}}</textarea>
+                            <textarea readonly id="form7 " class="md-textarea form-control " style="height: 100%px; min-height: 300px ; ">{{vm.codeToShow}}</textarea>
 
+                        </div>
                     </div>
+
                 </div>
 
             </div>
+
 
         </div>
 
@@ -257,51 +219,34 @@
     </div>
 
 
-</div>
-
-
-<style>
-    .modal {
-        display: block;
-        position: fixed;
-        z-index: 10000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgb(0, 0, 0);
-        background-color: rgba(0, 0, 0, 0.4);
-    }
-
-    .modal-content {
-        background-color: "secondary ";
-        margin: 3% auto;
-        padding: 20px;
-        border: 1px "secondary ";
-        width: 15%;
-    }
-
-    .modal-left {
-        background-color: "secondary";
-        margin-top: -50px auto;
-        margin-left: 54%;
-        /* padding: 5px; */
-        border: 5px "secondary ";
-        width: 20%;
-    }
-
-
-    .modal-profile {
-        display: block;
-        position: fixed;
-        z-index: 10000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgb(0, 0, 0);
-        background-color: rgba(0, 0, 0, 0.8);
-    }
-</style>
+    <style>
+        .modal {
+            display: block;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        
+        .modal-content {
+            background-color: "secondary ";
+            margin: 3% auto;
+            padding: 20px;
+            border: 1px "secondary ";
+            width: 15%;
+        }
+        
+        .modal-profile {
+            background-color: "secondary";
+            margin: auto;
+            /* margin-left: 63%; */
+            padding: 5px;
+            border: 5px "secondary ";
+            width: 20%;
+        }
+    </style>
