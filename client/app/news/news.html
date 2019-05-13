@@ -1,0 +1,141 @@
+<div class="col-md-12" style="align-self: center" ng-controller="ProfileCtrl as vm">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand">
+            <h1>template<strong>SH<i class="fa fa-mobile" style="margin-right: 5px"></i>W</strong></h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
+            aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor03">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link " data-toggle="tab" href="#!home"><i class="fa fa-home"
+                            style="margin-right: 5px;"></i>Home</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link " data-toggle="tab" href="#!profile"><i class="fa fa-user"
+                            style="margin-right: 5px;"></i>Profile</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link active" href="#!news"><i class="fa fa-bell"
+                            style="margin-right: 5px;"></i></i>News</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <a class="nav-link" data-toggle="tab" href="#" title="Log out" style="margin-right: 2px"><i
+                        class="fa fa-sign-out" style="margin-right: 2px;"></i>Log out</a>
+                <!-- <a href="#!profile" style="color: white" title="Go to profile">{{vm.username}}</a> -->
+            </form>
+        </div>
+    </nav>
+
+
+
+
+    <div style="margin-top: 2%;" align="center">
+        <div class="card border-light mb-3 " style="width: 800px; max-height: 500px; min-height: 22rem; margin-right:1%;" ng-repeat="item in vm.newsList">
+
+
+            <div class="card-body">
+
+                <p class="lead" align="right">
+
+                    <button title="show info" type="submit" class="btn btn-secondary " style="align-self: right;" ng-click="vm.showItem(item)"><i class="fa fa-info-circle"></i></button>
+                    <div class="card-text text-center " style=" font-size: 20px">{{item.username}}
+
+                </p>
+
+                <p align="center" style="font-size: 15px; margin-top:10px">{{item.timeOfPost}}</p>
+
+                <div class="text-center" style="margin-top:1%; height: 270px; float:left; width: 50%">{{item.description}}</div>
+
+                <div class="text-center" style="margin-top:1%; width: 50%; height: 270px; float:right">
+                    <img src="{{item.photo}}" alt="asta e poza" class="img-rounded" style="
+                               max-width:100%;
+                                max-height:70%;
+                              
+                                object-fit: contain" />
+                    
+                </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <div id="loading" class="modal" ng-if="vm.displayModal">
+        <div class="modal-content" style="width: 600px;">
+            <div style="color: #000">
+                <div class="card mb-3 " style=" margin-top:3%;">
+                    <div class="card-body">
+
+                        <p class="lead" style="margin-top: 1%; margin-right: 1%" align="right">
+
+                            <button type="submit" class="btn btn-info btn-lg" style="align-self: right" title="Copy code" ngclipboard data-clipboard-text="{{vm.copyToClipboard}}" ng-click="vm.copy()"><i class="fa fa-copy"></i></button>
+                            <button type="submit" class="btn btn-danger btn-lg" style="align-self: right" title="Close" ng-click="vm.close()"><i class="fa fa-window-close"></i></button>
+                        </p>
+                      
+                        <div class="card-text text-center " style="margin:2%; color:whitesmoke; font-size: 25px">
+                            {{vm.descriptionToShow}}</div>
+                        <p style="color:white; font-size: 30px; text-align: center; margin-top:10%"><strong>Here is
+                                        the code</strong></p>
+
+                        <textarea readonly id="form7" class="md-textarea form-control" style="height: 100%px; min-height: 300px ;">{{vm.codeToShow}}</textarea>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+</div>
+
+
+<style>
+    .modal {
+        display: block;
+        position: fixed;
+        z-index: 10000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+    
+    .modal-content {
+        background-color: "secondary";
+        margin: 3% auto;
+        padding: 20px;
+        border: 1px "secondary";
+        width: 15%;
+    }
+    
+    .polaroid {
+        /* width: 250px; */
+        box-shadow: 0 4px 8px 0 rgba(48, 48, 48, 0.2), 0 6px 20px 0 rgba(1, 0, 0, 0.19);
+        text-align: center;
+    }
+</style>

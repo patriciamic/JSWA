@@ -30,6 +30,8 @@ router.post('/allSubsribers', routes.getAllSubribers);
 
 router.post('/allFollowers', routes.getAllFollowers);
 
+router.post('/news', routes.getNews);
+
 router.get('/test', routes.test);
 
 app

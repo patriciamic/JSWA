@@ -27,6 +27,9 @@
             .when('/newphoto', {
                 templateUrl: 'app/newphoto/newphoto.html',
             })
+            .when('/news', {
+                templateUrl: 'app/news/news.html',
+            })
             .otherwise({
                 redirectTo: '/home'
             });

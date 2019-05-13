@@ -1,5 +1,5 @@
-(function() {
-    angular.module('app').controller('TestCtrl', function($http, toaster) {
+(function () {
+    angular.module('app').controller('TestCtrl', function ($http, toaster) {
 
         const vm = this;
 
@@ -32,7 +32,7 @@
                         console.log(element.timeOfPost);
                         // element.photo = "https://jswa-templates.herokuapp.com/" + photo + ".jpg "; //heroku
                         element.photo = "http://localhost:3000/" + photo + ".jpg ";
-                       
+
                         officialPosts.push(element);
 
                     });
@@ -63,7 +63,7 @@
 
         let itemToShow = {};
 
-        vm.showItem = function(item) {
+        vm.showItem = function (item) {
             console.log(item);
 
             vm.codeToShow = item.code;
@@ -126,21 +126,28 @@
         }
 
 
-        getAllSubribers = function() {
+        getAllSubribers = function () {
             $http.post('/allSubsribers', { idUserFrom: localStorage.getItem("idUser") })
-                .then(res => vm.allSubsribers = res.data)
+                .then(res => {
+                    // console.log(res.data);
+                    vm.allSubsribers = res.data
+
+                })
                 .catch(err => console.error(err));
         }
 
         getAllSubribers();
 
-        postNewSubscriber = function(idUserTo) {
+        postNewSubscriber = function (idUserTo) {
             $http.post('/addNewSubscriber', { idUserFrom: localStorage.getItem("idUser"), idUserTo: idUserTo })
-                .then(res => vm.allSubsribers = res.data)
+                .then(res => {
+                    console.log("AIIIIIIICI", res.data);
+                vm.allSubsribers = res.data
+                })
                 .catch(err => console.error(err));
         }
 
-        postDeleteSubscriber = function(idUserTo) {
+        postDeleteSubscriber = function (idUserTo) {
             $http.post('/deleteSubscriber', { idUserFrom: localStorage.getItem("idUser"), idUserTo: idUserTo })
                 .then(res => vm.allSubsribers = res.data)
                 .catch(err => console.error(err));
@@ -160,7 +167,7 @@
 
         vm.postsForFollowingProfile = [];
 
-        vm.getDataForFollowingProfile = function(idUserFollowingProfile) {
+        vm.getDataForFollowingProfile = function (idUserFollowingProfile) {
             $http.post('/allPostsById', { idUser: idUserFollowingProfile })
                 .then(res => {
                     vm.postsForFollowingProfile = JSON.parse(res.data.message);
@@ -175,7 +182,7 @@
                 .catch(err => console.error(err));
         }
 
-        vm.showFollowingProfile = function(item) {
+        vm.showFollowingProfile = function (item) {
             console.log(item.idUserTo);
             vm.getDataForFollowingProfile(item.idUserTo);
             vm.usernameToShow = item.username;

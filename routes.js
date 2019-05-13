@@ -21,7 +21,8 @@ module.exports = {
     postDeleteSubscriber,
     getAllSubribers,
     getAllFollowers,
-    test
+    test,
+    getNews
 }
 
 
@@ -225,3 +226,16 @@ function writeFile(data) {
         })
     })
 }
+
+
+async function getNews(ctx){
+    let mdata = ctx.request.body;
+    let res = await pool.executeQuery(`select users.username, subscribers.idUserTo, posts.timeOfPost, posts.photo, posts.description, posts.code from subscribers 
+	                                        join users on users.id = subscribers.idUserTo
+	                                        join posts on subscribers.idUserTo = posts.idUser 
+                                            where subscribers.idUserFrom = ${mdata.idUser} 
+                                            order by posts.timeOfPost desc limit 10`);
+
+    ctx.body = res;
+}
+
