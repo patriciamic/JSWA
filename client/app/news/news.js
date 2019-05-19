@@ -1,5 +1,5 @@
 (function () {
-    angular.module('app').controller('ProfileCtrl', function ($http, toaster) {
+    angular.module('app').controller('NewsCtrl', function ($http, toaster) {
 
         const vm = this;
 
@@ -57,7 +57,7 @@
             vm.codeToShow = item.code;
             // vm.descriptionToShow = item.description;
             vm.copyToClipboard = item.code;
-            // vm.photoToShow = item.photo;
+            vm.photoToShow = item.photo;
             vm.displayModal = true;
         }
 

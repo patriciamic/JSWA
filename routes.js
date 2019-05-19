@@ -111,9 +111,19 @@ async function postNewUser(ctx) {
         console.log("intra cici");
         ctx.body = { message: `wrong` };
     } else {
-        let res = await pool.executeQuery(`INSERT INTO Users (username, password) VALUES ("${mdata.username}", "${mdata.password}")`);
-        // let res = await db.executeQuery(queries.register(mdata.username, mdata.password)); //pgadmin
-        ctx.body = { message: `${mdata.username}` };
+
+        let rres = await pool.executeQuery(`select id, username from Users where username="${mdata.username}" and password = "${mdata.password}"`);
+       
+        console.log("DUPA SELECT" + JSON.stringify(rres) +  rres.length);
+        if(rres != [] ){
+            ctx.body = { message: `exists` };
+        }else{
+            let res = await pool.executeQuery(`INSERT INTO Users (username, password) VALUES ("${mdata.username}", "${mdata.password}")`);
+            console.log("DUPA INSERT" + JSON.stringify(res));
+            // let res = await db.executeQuery(queries.register(mdata.username, mdata.password)); //pgadmin
+            ctx.body = { message: `${mdata.username}` };
+        }
+       
     }
 
 }

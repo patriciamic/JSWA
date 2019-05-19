@@ -17,7 +17,11 @@
                         if (res.data.message == "wrong") {
                             // alert("Wrong username or password, min 4 characters required");
                             toaster.pop('warning', "Wrong username or password, min 4 characters required", "");
-                        } else {
+                        } 
+                        if(res.data.message == "exists"){
+                            toaster.pop('warning', "This username already exists", "");
+                        }
+                        else {
                             toaster.pop('success', "Registred succefully", "");
                             $location.path("/");
                         }
